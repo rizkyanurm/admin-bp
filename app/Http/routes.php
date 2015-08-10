@@ -11,6 +11,17 @@
 |
 */
 
+// api base
+Route::group(['prefix' => 'api','middleware'=>'simpleauth'], function()
+{
+    Route::resource('employe','EmployeController');
+    Route::resource('departement','DepartementController');
+});
+
+// html base
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts/template');
+});
+Route::get('version', function () {
+    return view('version');
 });

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    // 'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +79,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'OemahProduction'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -95,7 +96,8 @@ return [
     |
     */
 
-    'log' => 'single',
+    'log' => 'errorlog',
+    // 'log' => 'single',
 
     /*
     |--------------------------------------------------------------------------
@@ -140,9 +142,9 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Bimaproteksi\Providers\AppServiceProvider::class,
+        Bimaproteksi\Providers\EventServiceProvider::class,
+        Bimaproteksi\Providers\RouteServiceProvider::class,
 
     ],
 

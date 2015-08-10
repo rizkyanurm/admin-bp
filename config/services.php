@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => App\User::class,
+        'model'  => Bimaproteksi\User::class,
         'key'    => '',
         'secret' => '',
     ],

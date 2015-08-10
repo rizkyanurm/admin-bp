@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace Bimaproteksi\Jobs;
 
 use Illuminate\Bus\Queueable;
 

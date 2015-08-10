@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Bimaproteksi\Events;
 
 abstract class Event
 {

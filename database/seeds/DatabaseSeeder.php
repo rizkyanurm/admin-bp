@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Bimaproteksi\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,8 +15,26 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call('UserTableSeeder');
+        $this->call('UserTableSeeder');
 
-        Model::reguard();
+        // Model::reguard();
+    }
+}
+
+/**
+* 
+*/
+class UserTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('users')->delete();
+        $users = [
+            ['name'=>'Hanif Burhanudin','email'=>'boerhan.jogja@gmail.com','username'=>'oemah','password'=>Hash::make('admin')]
+        ];
+
+        foreach ($users as $val) {
+            User::create($val);
+        }
     }
 }
