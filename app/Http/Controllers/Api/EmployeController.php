@@ -1,6 +1,6 @@
 <?php
 
-namespace Bimaproteksi\Http\Controllers;
+namespace Bimaproteksi\Http\Controllers\Api;
 
 // use Illuminate\Http\Request;
 

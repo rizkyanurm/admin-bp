@@ -31,3 +31,4 @@
 <script type="text/javascript" src="{{URL::to('assets/js/demo_dashboard.js')}}"></script>
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->       
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>   

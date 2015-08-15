@@ -20,13 +20,11 @@
 					@include('layouts._include.navigationtop')                               
 				</ul>
 				<!-- END X-NAVIGATION VERTICAL -->                     
-
 				<!-- START BREADCRUMB -->
 				<ul class="breadcrumb">
 					@include('layouts._include.breadcrumb')                               
 				</ul>
 				<!-- END BREADCRUMB -->                       
-				
 				<!-- PAGE CONTENT WRAPPER -->
 				<div class="page-content-wrap">
         			@yield('content')
