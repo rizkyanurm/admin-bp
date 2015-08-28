@@ -6,7 +6,8 @@ namespace Bimaproteksi\Http\Controllers;
 
 use Bimaproteksi\Http\Requests;
 use Bimaproteksi\Http\Controllers\Controller;
-use Response, Request, Route, View;
+use Illuminate\Http\Request;
+use Response, Route, View, Input;
 
 class Employe extends Controller
 {
@@ -21,7 +22,7 @@ class Employe extends Controller
         $request = Request::create('api/employe','GET');
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
-        return View::make('employe.index',compact('data'));
+        return View::make('admin.employee.employee',compact('data'));
     }
 
     /**
@@ -31,7 +32,7 @@ class Employe extends Controller
      */
     public function create()
     {
-        //
+        return View::make('admin.employee.create');
     }
 
     /**
@@ -40,9 +41,25 @@ class Employe extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $input=[
+            'nama' => Input::get('nama'),
+            'email' => Input::get('email'),
+            'tgl_lahir' => Input::get('tgl_lahir'),
+            'jenis_kelamin' => Input::get('jenis_kelamin'),
+            'agama' => Input::get('agama'),
+            'alamat' => Input::get('alamat'),
+            'umur'=>Input::get('umur'),
+            'no_telp' => Input::get('no_telp'),
+
+        ];
+        $request = Request::create('api/employe','POST',$input);
+        $respose = json_decode(Route::dispatch($request)->getContent());
+        $data = $respose->data->response;
+        // return View::make('admin.employee.employee',compact('data'));
+        return $data;
+
     }
 
     /**

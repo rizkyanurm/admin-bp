@@ -45,13 +45,13 @@ class EmployeController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $validator = Validator::make(Request::all(), [
             'nama' => 'required',
             'email' => 'required|email|unique:employe,email',
             'tgl_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Lainnya',
             'alamat' => 'required',
             'no_telp' => 'required|numeric',

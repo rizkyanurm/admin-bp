@@ -38,7 +38,7 @@
 	<div class="col-md-6 col-xs-12">
 		<!-- <div class="input-group"> -->
 		<!-- <span class="input-group-addon"></span> -->
-			{!!Form::select( 'agama',['Islam','Kristen','Katolik','Hindu','Budha','Lainnya'],null, ['class' => 'form-control']) !!}
+			{!!Form::input( null,'agama',null, ['class' => 'form-control']) !!}
 		
 		<!-- </div> -->
 	</div>
@@ -50,7 +50,7 @@
 		<div class="col-md-6 col-xs-12">
 			<!-- <div class="input-group"> -->
 			<!-- <span class="input-group-addon"></span> -->
-				{!! Form::select( 'jenis_kelamin',['Laki-laki','Perempuan'], null, ['class' => 'form-control']) !!}
+				{!! Form::input( null,'jenis_kelamin', null, ['class' => 'form-control']) !!}
 			<!-- </div> -->
 		</div>
 </div>

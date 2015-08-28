@@ -22,7 +22,7 @@
 				<!-- END X-NAVIGATION VERTICAL -->                     
 				<!-- START BREADCRUMB -->
 				<ul class="breadcrumb">
-					@include('layouts._include.breadcrumb')                               
+					@yield ('breadcrumbs')                           
 				</ul>
 				<!-- END BREADCRUMB -->                       
 				<!-- PAGE CONTENT WRAPPER -->

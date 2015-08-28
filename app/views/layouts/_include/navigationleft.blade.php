@@ -1,6 +1,6 @@
 <ul class="x-navigation">
     <li class="xn-logo">
-        <a href="index.html">BIMAPROTEKSI</a>
+        <a href="{{ url('/')}}">BIMAPROTEKSI</a>
         <a href="#" class="x-navigation-control"></a>
     </li>
     <li class="xn-profile">
@@ -22,7 +22,7 @@
         </div>                                                                        
     </li>
     <li class="xn-title">Navigation</li>
-    <li class="active">
-        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        
-    </li>                    
+
+    
+        @yield('navigation')              
 </ul>

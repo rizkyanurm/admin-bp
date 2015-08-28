@@ -21,9 +21,13 @@
 				</div>
 			</div>
 			<!-- end panel heading -->
-
+			
 			<!-- panel body -->
-				<div class="panel-body">
+
+      
+    </div>
+
+
 			
 				<div class="form-group form-group-separated">
 

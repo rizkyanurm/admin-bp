@@ -139,13 +139,18 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+       
+       
         /*
          * Application Service Providers...
          */
         Bimaproteksi\Providers\AppServiceProvider::class,
         Bimaproteksi\Providers\EventServiceProvider::class,
         Bimaproteksi\Providers\RouteServiceProvider::class,
+
+
+
 
     ],
 
@@ -194,8 +199,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Form'      => Illuminate\Html\FormFacade::class,
-        'Html'      => Illuminate\Html\HtmlFacade::class,
+        'Form'      => 'Illuminate\Html\FormFacade', 
+        'HTML'      => 'Illuminate\Html\HtmlFacade',
+        'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
+    
+
     ],
 
 ];
