@@ -1,6 +1,6 @@
 <!-- Page Add Divisi -->
 
-@extends('layouts.template')
+@extends('admin.admin')
 @section('breadcrumbs')
 	{!! Breadcrumbs::render('add divisi') !!}
 @endsection
@@ -18,15 +18,27 @@
 				</div>
 			</div>
 			<!-- end panel heading -->
+			@if(isset($data))
+			@if(! ($statuss))
+			<div class="flash alert alert-danger" role="alert">
+				@foreach($data as $error)
+				<p>{{ $error }}</p>
+				@endforeach
+			</div>
+			@endif
+			@endif
+
 
 			<!-- panel body -->
 				<div class="panel-body">
-				
-				
-					{!! Form::open() !!}
-					@include ('admin/divisi/_include/_form',['submit_text'=>'Tambah','reset_text'=>'Reset'])
+
+					<div class="form-group form-group-separated">
+
+					{!! Form::open(['route'=> ['divisi_store']]) !!}
+					@include ('admin/divisi/_include/_form',['submit_text'=>'Tambah'])
 					{!! Form::close() !!}
-				
+					<div>
+
 				</div>
 			</div>
 			<!-- end panel body -->

@@ -16,13 +16,15 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call('UserTableSeeder');
+        $this->call('DepartementTableSeeder');
+        $this->call('AmanahTableSeeder');
 
         // Model::reguard();
     }
 }
 
 /**
-* 
+*
 */
 class UserTableSeeder extends Seeder
 {
@@ -36,5 +38,24 @@ class UserTableSeeder extends Seeder
         foreach ($users as $val) {
             User::create($val);
         }
+    }
+}
+
+class DepartementTableSeeder extends Seeder{
+    public function run(){
+      DB::table('departement')->insert([
+        'nama_departement' =>'Keuangan',
+        'kode_departement' => 'K001',
+        ]);
+
+      }
+}
+
+class AmanahTableSeeder extends Seeder{
+public function run(){
+  DB::table('amanah')->insert([
+    'nama_amanah' =>' amanah 1',
+    'tunjangan' => '2000000',
+    ]);
     }
 }

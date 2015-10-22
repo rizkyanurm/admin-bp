@@ -24,12 +24,11 @@
 
 			<!-- panel body -->
 				<div class="panel-body">
-				
-				
-					{!! Form::open() !!}
-					@include ('admin/karir/_include/_form',['submit_text'=>'Simpan','reset_text'=>'Reset'])
+
+					{!! Form::model($karir, array('route'=>array('updatekarir', $karir->id_karir ))) !!}
+							@include ('admin/karir/_include/_form',['submit_text'=>'Simpan'])
 					{!! Form::close() !!}
-				
+
 				</div>
 			</div>
 			<!-- end panel body -->

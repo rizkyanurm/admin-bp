@@ -1,9 +1,9 @@
-		<!-- Page Add Karir -->
+		<!-- Page Edit amanah -->
 
 		@extends('admin.admin')
 
 		@section('breadcrumbs')
-		{!! Breadcrumbs::render('addkarir')!!}
+		{!! Breadcrumbs::render('addamanah')!!}
 		@endsection
 
 		@section('content')
@@ -16,7 +16,7 @@
 						<!-- panel heading -->
 						<div class="panel-heading ui-draggable-handle">
 							<div class="panel-title">
-								<p> Tambah Karir </p>
+								<p> Tambah Amanah</p>
 							</div>
 						</div>
 						<!-- end panel heading -->
@@ -25,17 +25,16 @@
 						<div class="panel-body">
 							@if(isset($data))
 							@if(!($statuss))
-								<div class="flash alert alert-danger" role="alert">
-										@foreach($data as $error)
-										<p>{{$error}}</p>
-										@endforeach
-								</div>
+							<div class="flash alert alert-danger" role="alert">
+								@foreach($data as $error)
+								<p>{{ $error }}</p>
+								@endforeach
+							</div>
 							@endif
 							@endif
 
-
-							{!! Form::open(['route'=>['store_karir']]) !!}
-							@include ('admin/karir/_include/_form',['submit_text'=>'Tambah'])
+							{!! Form::open(['route'=>['amanah_store']]) !!}
+							@include ('admin/amanah/_include/_form',['submit_text'=>'Simpan'])
 							{!! Form::close() !!}
 
 						</div>
@@ -44,6 +43,4 @@
 				</div>
 			</div>
 		</div>
-
-
 		@endsection

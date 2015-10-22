@@ -16,19 +16,51 @@
                                     <h3 class="panel-title">Detail Karyawan</h3>
                                 </div>
                                 <div class="panel-body">
-                           			<p>Nama </p>
-                           			<p>Email</p>
-                           			<p>Tgl Lahir</p>
-                           			<p>Agama</p>
-                           			<p>Jenis Kelamin</p>
-                           			<p>Umur</p>
-                           			<p>Alamat</p>
-                           			<p>No Telepon</p>
-                           			<p>Departemen</p>
-                           			<p>Jenjang Karir</p>
-                           			<p>Jabatan</p> 
-                           			<p>Status Karyawan</p>
-                           			<p>Mulai Kerja</p>
+
+                                <table class="table table-bordered">
+                               @foreach($data as $key=>$val)
+                                  <tr>
+                                  <th>Nama</th>
+                                  <td>{{ $val->nama }}</td>
+                                  </tr>
+
+                                  <tr>
+                                  <th>Email</th>
+                                  <td>{{ $val->email }}</td>
+                                  </tr>
+
+                                  <tr>
+                                  <th>Tgl Lahir</th>
+                                  <td>{{ $val->tgl_lahir }}</td>
+                                  </tr>
+
+                                  <tr>
+                                  <th>Agama</th>
+                                  <td>{{ $val->agama }}</td>
+                                  </tr>
+
+                                  <tr>
+                                  <th>Jenis Kelamin</th>
+                                  <td>{{ $val->jenis_kelamin }}</td>
+                                </tr>
+
+                                <tr>
+                                <th>Umur</th>
+                                <td>{{ $val->umur }}</td>
+                                </tr>
+
+                                <tr>
+                                  <th>Alamat</th>
+                                  <td>{{ $val->alamat }}</td>
+                                </tr>
+
+                                <tr>
+                                  <th>No Telpon</th>
+                                  <td>{{ $val->no_telp }}</td>
+                                </tr>
+                                @endforeach
+                              
+                                </table>
 
                                 </div>
                                 <div class="panel-footer">
@@ -38,5 +70,5 @@
                             </div>
 </div>
 
-
+@stop
 @endsection

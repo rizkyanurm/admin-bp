@@ -13,10 +13,7 @@
 		$breadcrumbs->push('Home', route('admin'));
 	});
 
-
 //////////////////////////////////////////////////////////////////
-
-	
 	//Home > Departemen
 	Breadcrumbs::register('departemen', function($breadcrumbs){
 		$breadcrumbs->parent('admin');
@@ -61,7 +58,7 @@
 	//Home > Employee > Detail
 	Breadcrumbs::register('detailemployee', function($breadcrumbs){
 		$breadcrumbs->parent('employee');
-		$breadcrumbs->push('Detail Employee', route('detail_employee'));
+		$breadcrumbs->push('Detail Employee', route('show_employee'));
 	});
 
 
@@ -271,6 +268,22 @@ Breadcrumbs::register('absensi', function($breadcrumbs){
 		$breadcrumbs->parent('absensi');
 		$breadcrumbs->push('Edit Absensi', route('editabsensi'));
 	});
-
+//////////////////////////////////////////////////////////
+breadcrumbs::register('amanah', function($breadcrumbs){
+		$breadcrumbs->parent('admin');
+		$breadcrumbs->push('Amanah', route('amanah'));
+	});
+	breadcrumbs::register('addamanah', function($breadcrumbs){
+		$breadcrumbs->parent('amanah');
+		$breadcrumbs->push('Add Amanah', route('addamanah'));
+	});
+	breadcrumbs::register('editamanah', function($breadcrumbs){
+		$breadcrumbs->parent('amanah');
+		$breadcrumbs->push('Edit Amanah', route('editamanah'));
+	});
+breadcrumbs::register('gaji', function($breadcrumbs){
+		$breadcrumbs->parent('admin');
+		$breadcrumbs->push('gaji', route('gaji'));
+});
 
 ?>

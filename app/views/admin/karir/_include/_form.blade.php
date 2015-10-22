@@ -4,7 +4,7 @@
 	{!!Form::label('golongan', 'Golongan',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-6 col-xs-12">
 		<!-- <div class="input-group"> -->
-		{!! Form::select('golongan',[], null,['class'=>'form-control select'])!!}
+		{!! Form::select('golongan',['A'=>'A','B'=>'B'], null,['class'=>'form-control select'])!!}
 			<span class="help-block"> </span>
 		<!-- </div> -->
 	</div>
@@ -31,7 +31,7 @@
 </div>
 
 <div class="form-group">
-	{!!Form::label('poin_kredit', 'Poin Kredit',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
+	{!!Form::label('poin kredit', 'Poin Kredit',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-6 col-xs-12">
 		<!-- <div class="input-group"> -->
 			{!!Form::input(null, 'poin_kredit',null,['class' => 'form-control']) !!}
@@ -43,6 +43,6 @@
 
 <div class="panel-footer">
 	{!! Form::submit($submit_text, ['class'=>'btn btn-primary pull-right']) !!}
-	{!! Form::submit($reset_text, ['class'=>'btn btn-default']) !!}
-	
+
+
 </div>

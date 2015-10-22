@@ -17,6 +17,9 @@ Route::group(['prefix' => 'api'/*,'middleware'=>'simpleauth'*/], function()
 {
     Route::resource('employe','Api\EmployeController');
     Route::resource('departement','Api\DepartementController');
+    Route::resource('divisi','Api\DivisiController');
+    Route::resource('amanah','Api\AmanahController');
+    Route::resource('karir', 'Api\KarirController');
 });
 
 //model
@@ -84,14 +87,13 @@ Route::get('/addemployee', ['as'=>'addemployee','uses'=>'Employe@create']);
 
 Route::post('/addemployee', ['as'=>'employee_store','uses'=>'Employe@store']);
 
-Route::get('/editemployee',['as'=>'editemployee', function(){
- 	return view('admin/employee/edit');
- }]);
-Route::get('/delete_employe',['as'=>'delete_employee','uses'=>'Employe@delete']);
+Route::get('/editemployee/{id}',['as'=>'editemployee', 'uses'=>'Api\EmployeController@edit']);
 
-Route::get('/detail_employee',['as'=>'detail_employee', function(){
-    return view('admin/employee/detail');
-}]);
+Route::post('/editemployee/{id}',['as'=>'updateemployee','uses'=>'Employe@update']);
+
+Route::delete('/delete_employe/{id}',['as'=>'delete_employee','uses'=>'Employe@destroy']);
+
+Route::get('/detail_employee/{id}',['as'=>'show_employee','uses'=>'Employe@show']);
 
 
 
@@ -99,46 +101,43 @@ Route::get('/detail_employee',['as'=>'detail_employee', function(){
 
 Route::get('/departemen', ['as'=>'departemen', 'uses'=>'Departement@index']);
 
+Route::get('/adddepartemen',['as'=>'adddepartemen', 'uses'=>'Departement@create']);
 
- Route::get('/adddepartemen',['as'=>'adddepartemen', function(){
-    return view('admin/departemen/create');
-}]);
+Route::post('/addepartemen',['as'=>'departemen_store','uses'=>'Departement@store']);
 
-Route::get('/editdepartemen',['as'=>'editdepartemen', function(){
-    return view('admin/departemen/edit');
- }]);
+Route::get('/edit/{id}',['as'=>'editdepartemen','uses'=>'Api\DepartementController@edit']);
 
+Route::post('/edit/{id}',['as'=>'updatedepartemen','uses'=>'Departement@update']);
+
+Route::delete('/delete/{id}',['as'=>'delete_departemen','uses'=>'Departement@destroy']);
 
 //{url admin/divisi}
 
-Route::get('/divisi', ['as'=>'divisi', function(){
-    return view('admin/divisi/divisi');
-}]);
- Route::get('/adddivisi',['as'=>'adddivisi', function(){
-    return view('admin/divisi/create');
-}]);
+Route::get('/divisi', ['as'=>'divisi', 'uses'=> 'Divisi@index']);
 
- Route::get('/editdivisi', ['as'=>'editdivisi',function(){
-    return view('admin/divisi/edit');
-}]);
+Route::get('/adddivisi',['as'=>'adddivisi', 'uses' =>'Divisi@create']);
+
+Route::post('/adddivisi',['as'=>'divisi_store', 'uses'=>'Divisi@store']);
+
+Route::get('/editdivisi/{id}', ['as'=>'editdivisi','uses' =>'Api\DivisiController@edit']);
+
+Route::post('/updatedivisi/{id}',['as'=>'updatedivisi', 'uses'=>'Divisi@update']);
+
+Route::delete('/delete/{id}',['as'=>'delete_divisi', 'uses'=>'Divisi@destroy']);
 
 //{url admin/karir}
 
- Route::get('/karir', ['as'=>'karir', function(){
-    return view('admin/karir/karir');
- }]);
+ Route::get('/karir', ['as'=>'karir','uses'=>'Karir@index']);
 
- Route::get('/addkarir',['as'=>'addkarir', function(){
-    return view('admin/karir/create');
- }]);
+ Route::get('/addkarir',['as'=>'addkarir', 'uses'=>'Karir@create']);
 
- Route::get('/editkarir',['as'=>'editkarir', function(){
-    return view('admin/karir/edit');
- }]);
+ Route::post('/addkarir',['as'=>'store_karir','uses'=>'Karir@store']);
 
- Route::get('/delete',['as'=>'deletekarir', function(){
-   return view('admin/karir/edit');
- }]);
+ Route::get('/editkarir/{id}',['as'=>'editkarir', 'uses'=>'Api\KarirController@edit']);
+
+ Route::post('/editkarir/{id}',['as'=>'updatekarir', 'uses'=>'Karir@update']);
+
+ Route::delete('/delete/{id}',['as'=>'delete_karir', 'uses'=> 'Karir@destroy']);
 
 
  //{url admin/jabatan}
@@ -177,7 +176,7 @@ Route::get('/divisi', ['as'=>'divisi', function(){
  Route::get('/detailpoinpimpin',['as'=>'detailpoin',function(){
     return view('admin/p_kepemimpinan/detail');
  }]);
- 
+
  Route::get('/addpertanyaanp',['as'=>'addpertanyaanp', function(){
     return view('admin/p_kepemimpinan/create_p');
  }]);
@@ -231,7 +230,7 @@ Route::get('/editaspek',['as'=>'editaspek', function(){
     return view('admin/p_kinerja/aspek/edit');
 }]);
 
-//Poin 
+//Poin
 Route::get('/poin',['as'=>'poin', function(){
     return view('admin/p_kinerja/poin/poin');
 }]);
@@ -293,6 +292,31 @@ Route::get('/editabsensi',['as'=>'editabsensi', function(){
 Route::get('/addabsensi',['as'=>'addabsensi', function(){
         return view('admin/absensi/create');
 }]);
+
+// amanah
+Route::get('/amanah',['as'=>'amanah','uses'=>'Amanah@index']);
+
+Route::get('/editamanah/{id}',['as'=>'editamanah', 'uses'=>'Api\AmanahController@edit']);
+
+Route::post('editamanah/{id}',['as'=>'updateamanah', 'uses'=>'Amanah@update']);
+
+Route::get('/addamanah',['as'=>'addamanah','uses'=>'Amanah@create']);
+
+Route::post('/addamanah',['as'=>'amanah_store','uses'=>'Amanah@store']);
+
+Route::delete('/deleteamanah/{id}',['as'=>'delete_amanah', 'uses'=>'Amanah@destroy']);
+
+//Gaji
+
+Route::get('/gaji',['as'=>'gaji', function(){
+        return view('admin/gaji/gaji');
+}]);
+
+Route::get('/detailgaji',['as'=>'detail_gaji', function(){
+        return view('admin/gaji/detail');
+}]);
+
+
 
 Route::get('version', function () {
     return view('version');

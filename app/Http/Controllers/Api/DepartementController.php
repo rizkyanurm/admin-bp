@@ -2,10 +2,13 @@
 
 namespace Bimaproteksi\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use Bimaproteksi\Http\Requests;
 use Bimaproteksi\Http\Controllers\Controller;
+use Bimaproteksi\Models\Departement;
+use Response;
+use Request, Validator;
 
 class DepartementController extends Controller
 {
@@ -16,7 +19,14 @@ class DepartementController extends Controller
      */
     public function index()
     {
-        //
+        $departemen = Departement::all();
+        return Response::json([
+                'status'=>true,
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>$departemen
+                ]
+            ]);
     }
 
     /**
@@ -34,10 +44,41 @@ class DepartementController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
-    }
+        $validator= validator::make(Request::all(),[
+        'nama_departement' =>'required',
+        'kode_departement'=>'required|unique:Departement|max:5',
+
+        ]);
+
+        if ($validator->fails()){
+            return Response::json([
+                'status'=> false,
+                'message' => null,
+                'data' =>[
+                    'request'=>Request::all(),
+                    'response'=>$validator->errors()->all()
+                ]
+            ]);
+        }
+
+        $store = new Departement;
+        $store->nama_departement = Request::get('nama_departement');
+        $store->kode_departement =Request::get('kode_departement');
+        if($store->save()) {
+            return Response::json([
+                'status'=>true,
+                'message'=>null,
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>[
+                        'id_departement'=>$store->id
+                        ]
+                    ]
+                ]);
+            }
+        }
 
     /**
      * Display the specified resource.
@@ -47,8 +88,15 @@ class DepartementController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $departemen=Departement::where('id_departement',$id)->get()->first();
+        return Response::json([
+                    'status'=>true,
+                    'data'=>[
+                        'request'=>Request::all(),
+                        'response'=>$departemen
+                    ]
+                ]);
+            }
 
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +106,8 @@ class DepartementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departement=Departement::find($id);
+        return View('admin.departemen.edit')->with(compact('departement'));
     }
 
     /**
@@ -67,9 +116,24 @@ class DepartementController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         //
+        $update=Departement::find($id);
+        $update->kode_departement = Request::get('kode_departement');
+        $update->nama_departement = Request::get('nama_departement');
+
+        if($update->save()) {
+          return Response::json([
+            'status' => true,
+            'message' =>'data has been updated',
+            'data'=>[
+              'request' => Request::all(),
+              'response' =>Departement::all(),
+              ]
+            ]);
+        }
+
     }
 
     /**
@@ -80,6 +144,16 @@ class DepartementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $departemen= Departement::find($id);
+        $departemen->delete();
+        return Response::json([
+                'status'=>true,
+                'message'=>'Departement has been deleted',
+                'data'=>[
+                        'request'=>Request::all(),
+                        'response'=>Departement::all()
+
+                ]
+            ]);
     }
 }

@@ -15,7 +15,7 @@
 	<div class="col-md-6 col-xs-12">
 		<!-- <div class="input-group"> -->
 		<!-- <span class="input-group-addon"><span class="fa fa-envelope"></span></span> -->
-			{!!Form::input(null, 'email',null,['class' => 'form-control email']) !!}
+			{!!Form::input(null,'email', null,['class' => 'form-control email']) !!}
 		<!-- </div> -->
 	</div>
 </div>
@@ -26,7 +26,7 @@
 	<div class="col-md-6 col-xs-12">
 		<!-- <div class="input-group"> -->
 		<!-- <span class="input-group-addon"><span class="fa fa-calendar-o"></span></span> -->
-			{!!Form::input('date', 'tgl_lahir', null, ['class' => 'form-control datepicker']) !!}
+			{!!Form::input('date','tgl_lahir',  null, ['class' => 'form-control datepicker']) !!}
 		<!-- </div> -->
 	</div>
 </div>
@@ -85,69 +85,7 @@
 		</div>
 </div>
 
-<div class="form-group">
-	{!! Form::label('departemen', 'Departemen',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-		<div class="col-md-6 col-xs-12">
-			<!-- <div class="input-group"> -->
-			<!-- <span class="input-group-addon"></span> -->
-				{!! Form::select('departemen',[], null,['class'=>'form-control select'])!!}
-			<!-- </div> -->
-		</div>
-</div>
-
-<div class="form-group">
-	{!! Form::label('jenjang_karir', 'Jenjang Karir',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-		<div class="col-md-6 col-xs-12">
-			<!-- <div class="input-group"> -->
-			<!-- <span class="input-group-addon"></span> -->
-				{!! Form::select('jenjang karir',[], null,['class'=>'form-control select'])!!}
-			<!-- </div> -->
-		</div>
-</div>
-
-<div class="form-group">
-	{!! Form::label('jabatan', 'Jabatan',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-		<div class="col-md-6 col-xs-12">
-			<!-- <div class="input-group"> -->
-			<!-- <span class="input-group-addon"></span> -->
-				{!! Form::select('jabatan',[], null,['class'=>'form-control select'])!!}
-			<!-- </div> -->
-		</div>
-</div>
-
-<div class="form-group">
-	{!! Form::label('status_karyawan', 'Status Karyawan',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-		<div class="col-md-6 col-xs-12">
-			<!-- <div class="input-group"> -->
-			<!-- <span class="input-group-addon"></span> -->
-				{!! Form::select('jabatan',[], null,['class'=>'form-control select'])!!}
-			<!-- </div> -->
-		</div>
-</div>
-
-<div class="form-group">
-	{!! Form::label('mulai_kerja', 'Mulai Kerja',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-		<div class="col-md-6 col-xs-12">
-			<!-- <div class="input-group"> -->
-			<!-- <span class="input-group-addon"></span> -->
-				{!!Form::input('date', 'mulai_kerja', null, ['class' => 'form-control datepicker']) !!}
-			<!-- </div> -->
-		</div>
-</div>
-
-<div class="form-group">
-	{!! Form::label('status_kerja', 'Status Kerja',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-		<div class="col-md-6 col-xs-12">
-			<!-- <div class="input-group"> -->
-			<!-- <span class="input-group-addon"></span> -->
-				{!!Form::input(null, 'status_kerja', null, ['class' => 'form-control ']) !!}
-			</div>
-		<!-- </div> -->
-</div>
-
 
 <div class="panel-footer">
 	{!! Form::submit($submit_text, ['class'=>'btn btn-primary pull-right']) !!}
-	{!! Form::submit($reset_text, ['class'=>'btn btn-default']) !!}
-	
 </div>

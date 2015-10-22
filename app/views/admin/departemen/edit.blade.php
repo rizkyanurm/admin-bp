@@ -22,12 +22,12 @@
 
 			<!-- panel body -->
 				<div class="panel-body">
-				
-				
-					{!! Form::open() !!}
-					@include ('admin/departemen/_include/_form',['submit_text'=>'Simpan','reset_text'=>'Reset'])
+
+
+					{!! Form::model($departement,array('route'=>array('updatedepartemen', $departement->id_departement))) !!}
+							@include ('admin/departemen/_include/_form',['submit_text'=>'Simpan','reset_text'=>'Reset'])
 					{!! Form::close() !!}
-				
+
 				</div>
 			</div>
 			<!-- end panel body -->

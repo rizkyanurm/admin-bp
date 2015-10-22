@@ -9,7 +9,7 @@ use Bimaproteksi\Http\Controllers\Controller;
 use Bimaproteksi\Models\Employe;
 use Response;
 use Request;
-use Validator;
+use Validator,redirect;
 
 class EmployeController extends Controller
 {
@@ -55,6 +55,7 @@ class EmployeController extends Controller
             'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Lainnya',
             'alamat' => 'required',
             'no_telp' => 'required|numeric',
+            'umur'=>'numeric',
         ]);
 
         if ($validator->fails()) {
@@ -76,6 +77,7 @@ class EmployeController extends Controller
         $store->agama = Request::get('agama');
         $store->alamat = Request::get('alamat');
         $store->no_telp = Request::get('no_telp');
+        $store->umur = Request::get('umur');
         if ($store->save()) {
             return Response::json([
                 'status'=>true,
@@ -98,7 +100,15 @@ class EmployeController extends Controller
      */
     public function show($id)
     {
-        //
+         $employe=Employe::where('id_employe', $id)->get()->first();
+         return Response::json([
+                'status'=>true,
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>$employe
+                ]
+            ]);
+
     }
 
     /**
@@ -109,7 +119,12 @@ class EmployeController extends Controller
      */
     public function edit($id)
     {
-        //
+
+         $employe=Employe::find($id);
+         return view('admin.employee.edit')->with(compact('employe'));
+
+
+
     }
 
     /**
@@ -118,9 +133,30 @@ class EmployeController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+
+        $update = Employe::find($id);
+        $update->nama = Request::get('nama');
+        $update->email = Request::get('email');
+        $update->tgl_lahir = Request::get('tgl_lahir');
+        $update->jenis_kelamin = Request::get('jenis_kelamin');
+        $update->agama = Request::get('agama');
+        $update->alamat = Request::get('alamat');
+        $update->no_telp = Request::get('no_telp');
+        $update->umur = Request::get('umur');
+        if ($update->save()) {
+            return Response::json([
+                'status'=>true,
+                'message' => 'data has been updated',
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>Employe::all(),
+                ]
+            ]);
+        }
+
+
     }
 
     /**
@@ -131,6 +167,16 @@ class EmployeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employe=Employe::find($id);
+        $employe->delete();
+        return Response::json([
+                'status'=>true,
+                'message' =>'Employe has been deleted',
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>Employe::all(),
+                ]
+            ]);
+
     }
 }

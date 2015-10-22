@@ -45,19 +45,19 @@
         		</ul>
         	</li>
         	<li>
-        		<a href="{{url('')}}">
+        		<a href="{{url('/gaji')}}">
         		<span class="glyphicon glyphicon-envelope"></span>
         		Gaji
         		</a>
         	</li>
         	<li>
-        		<a href="{{url('')}}">
+        		<a href="{{url('/absensi')}}">
         		<span class="glyphicon glyphicon-calendar"></span>
         		Absensi
         		</a>
         	</li>
         	<li>
-        		<a href="{{url('')}}">
+        		<a href="{{url('/amanah')}}">
         		<span class="glyphicon glyphicon-calendar"></span>
         		Amanah
         		</a>

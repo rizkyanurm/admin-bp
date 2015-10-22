@@ -7,6 +7,7 @@ namespace Bimaproteksi\Http\Controllers;
 use Bimaproteksi\Http\Requests;
 use Bimaproteksi\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Response, Route, View, Input;
 
 class Employe extends Controller
@@ -41,7 +42,7 @@ class Employe extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $input=[
             'nama' => Input::get('nama'),
@@ -57,8 +58,8 @@ class Employe extends Controller
         $request = Request::create('api/employe','POST',$input);
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
-        // return View::make('admin.employee.employee',compact('data'));
-        return $data;
+        $statuss=$respose->status;
+        return View::make('admin.employee.create')->with('statuss')->with(compact('data'));
 
     }
 
@@ -70,7 +71,13 @@ class Employe extends Controller
      */
     public function show($id)
     {
-        //
+
+        $request = Request::create('api/employe/{id}','GET');
+        $respose = json_decode(Route::dispatch($request)->getContent());
+        $data = $respose->data->response;
+        return $data;
+
+        // return View::make('admin.employee.detail')->with(compact('data'));
     }
 
     /**
@@ -81,7 +88,10 @@ class Employe extends Controller
      */
     public function edit($id)
     {
-        //
+
+       // $employe=Employe::findorfail($id);
+        $request = Request::create('api/employe/'.$id,'GET');
+
     }
 
     /**
@@ -93,7 +103,24 @@ class Employe extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $input=[
+            'nama' => Input::get('nama'),
+            'email' => Input::get('email'),
+            'tgl_lahir' => Input::get('tgl_lahir'),
+            'jenis_kelamin' => Input::get('jenis_kelamin'),
+            'agama' => Input::get('agama'),
+            'alamat' => Input::get('alamat'),
+            'umur'=>Input::get('umur'),
+            'no_telp' => Input::get('no_telp'),
+        ];
+
+        $request = Request::create('api/employe/'.$id,'PUT',$input);
+        $respose = json_decode(Route::dispatch($request)->getContent());
+        $data = $respose->data->response;
+        $messages=$respose->message;
+        return redirect::route('employee')->with(compact('data'))->withFlashMessage($messages);
+
+
     }
 
     /**
@@ -102,8 +129,12 @@ class Employe extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        $request = Request::create('api/employe/'.$id,'delete');
+        $respose = json_decode(Route::dispatch($request)->getContent());
+        $data = $respose->data->response;
+        $messages=$respose->message;
+        return redirect::route('employee')->with(compact('data'))->withFlashMessage($messages);
     }
 }

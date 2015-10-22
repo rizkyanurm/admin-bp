@@ -19,6 +19,7 @@ class CreateTableEmploye extends Migration
             $table->date('tgl_lahir');
             $table->enum('jenis_kelamin', array('Laki-laki', 'Perempuan'));
             $table->string('alamat',100);
+            $table->string('agama',20);
             $table->string('no_telp',20);
             $table->timestamps();
         });

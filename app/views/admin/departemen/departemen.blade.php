@@ -1,62 +1,65 @@
-<!-- Page Departemen -->
+		<!-- Page Departemen -->
 
-@extends('admin.admin')
-@section('breadcrumbs')
-	{!! Breadcrumbs::render('departemen') !!}
-@endsection
+		@extends('admin.admin')
+		@section('breadcrumbs')
+		{!! Breadcrumbs::render('departemen') !!}
+		@endsection
 
-@section('content')
+		@section('content')
 
-<div class="col-md-12">
-<div class="panel-heading">
-	<h3 class="panel-title">Daftar Departement</h3>
-</div> 
+		<div class="col-md-12">
+			<div class="panel-heading">
+				<h3 class="panel-title">Daftar Departement</h3>
+			</div>
+			<div class="panel-body">
+				@if (Session::has('flash_message'))
+				<div class="alert alert-success" role="alert">
+					{{ Session::get('flash_message') }}
+				</div>
+				@endif
 
+				<a  href="{{url('/adddepartemen')}}">
+					<button class="btn btn-warning" type="button" style="margin:10px 40px 20px 0px;">
+						<span class="glyphicon glyphicon-plus-sign"></span>
+						<span> Tambah Departemen</span>
+					</button>
+				</a>
 
-<div class="panel-body">
+				<table class="table datatable">
+					<thead>
+						<tr>
+							<th>Nama Departement</th>
+							<th>Kode</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($data as $key=>$val)
+						<tr>
+							<td>{{$val->nama_departement}}</td>
+							<td>{{$val->kode_departement}}</td>
+							<td>
+								<div class="btn btn-default btn-rounded btn-sm" >
+									<span class="fa fa-pencil"></span>
 
-<a  href="{{url('/adddepartemen')}}">
-<button class="btn btn-warning" type="button" style="margin:10px 40px 20px 0px;">
-<span class="glyphicon glyphicon-plus-sign"></span>
-<span> Tambah Departemen</span>
-</button>
-</a>
+									{!! link_to_route('editdepartemen','Edit',$val->id_departement) !!}
+								</div>
 
-					<table class="table datatable">
-						<thead>
-							<tr>
-								<th>Nama Departement</th>
-								<th>Kode</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($data as $key=>$val)
-							<tr>
-								<td>{{$val->nama_departement}}</td>
-								<td>{{$val->kode_departement}}</td>
-								<td>
-									<div class="btn btn-default btn-rounded btn-sm" >
-                                    <span class="fa fa-pencil"></span>
-                                    
-                                    	{!! link_to_route('editemployee','Edit') !!}
- 									</div>
+								{!!Form::open(array(
+									'route'=>array('delete_departemen', $val->id_departement),
+									'method'=>'DELETE'))!!}
 
-                                    <div class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('trow_1');">
-                                    <span class="fa fa-times"></span>
+									{!!Form::submit('Delete', ['class'=>'btn btn-danger btn-rounded btn-sm'])!!}
 
-                                    	{!! link_to_route('delete_employee','delete') !!}
- 									
-                                    </div >
+									{!!Form::close()!!}
+
 								</td>
 							</tr>
 							@endforeach
 						</tbody>
 					</table>
+				</div>
+			</div>
 
-
-    </div>
-</div>
-
-@endsection
-@stop
+			@endsection
+			@stop

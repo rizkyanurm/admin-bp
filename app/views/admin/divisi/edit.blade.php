@@ -1,6 +1,6 @@
 
 <!-- page Edit divisi -->
-@extends('layouts.template')
+@extends('admin.admin')
 @section('breadcrumbs')
 	{!! Breadcrumbs::render('edit divisi') !!}
 @endsection
@@ -21,12 +21,11 @@
 
 			<!-- panel body -->
 				<div class="panel-body">
-				
-				
-					{!! Form::open() !!}
-					@include ('admin/divisi/_include/_form',['submit_text'=>'Simpan','reset_text'=>'Reset'])
+
+					{!! Form::model($divisi, array('route'=>array('updatedivisi', $divisi->id_divisi))) !!}
+					@include ('admin/divisi/_include/_form',['submit_text'=>'Simpan'])
 					{!! Form::close() !!}
-				
+
 				</div>
 			</div>
 			<!-- end panel body -->

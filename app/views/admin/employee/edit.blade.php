@@ -24,10 +24,10 @@
 
 			<!-- panel body -->
 				<div class="panel-body">
+
 				
-				
-					{!! Form::open() !!}
-					@include ('admin/employee/_include/_form',['submit_text'=>'Simpan','reset_text'=>'Reset'])
+					{!! Form::model($employe, array('route'=>array('updateemployee', $employe->id_employe))) !!}
+							@include ('admin/employee/_include/_form',['submit_text'=>'Simpan'])
 					{!! Form::close() !!}
 				
 				</div>
