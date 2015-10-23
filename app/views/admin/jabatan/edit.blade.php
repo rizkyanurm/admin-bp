@@ -25,13 +25,13 @@
 
 			<!-- panel body -->
 				<div class="panel-body">
-				
 
-				
-					{!! Form::open() !!}
+
+
+					{!! Form::model($jabatan,array('route'=>array('updatejabatan', $jabatan->id_jabatan))) !!}
 					@include ('admin/jabatan/_include/_form',['submit_text'=>'Simpan','reset_text'=>'Reset'])
 					{!! Form::close() !!}
-				
+
 				</div>
 			</div>
 			<!-- end panel body -->

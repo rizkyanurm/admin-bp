@@ -20,6 +20,7 @@ Route::group(['prefix' => 'api'/*,'middleware'=>'simpleauth'*/], function()
     Route::resource('divisi','Api\DivisiController');
     Route::resource('amanah','Api\AmanahController');
     Route::resource('karir', 'Api\KarirController');
+    Route::resource('jabatan','Api\JabatanController');
 });
 
 //model
@@ -142,21 +143,17 @@ Route::delete('/delete/{id}',['as'=>'delete_divisi', 'uses'=>'Divisi@destroy']);
 
  //{url admin/jabatan}
 
- Route::get('/jab',['as'=>'jabatan', function(){
-    return view('admin/jabatan/jabatan');
- }]);
+ Route::get('/jab',['as'=>'jabatan','uses' => 'Jabatan@index']);
 
- Route::get('/addjabatan', ['as'=>'addjabatan', function(){
-    return view('admin/jabatan/create');
- }]);
+ Route::get('/addjabatan', ['as'=>'addjabatan','uses'=>'Jabatan@create']);
 
- Route::get('/editjabatan',['as'=>'editjabatan', function(){
-    return view('admin/jabatan/edit');
- }]);
+ Route::post('/addjabatan', ['as'=>'jabatan_store', 'uses'=>'Jabatan@store']);
 
- Route::get('/deletejabatan',['as'=>'delete_jabatan', function(){
-   return view('admin/karir/edit');
- }]);
+ Route::get('/editjabatan/{id}',['as'=>'editjabatan', 'uses'=>'Api\JabatanController@edit']);
+
+ Route::post('editjabatan/{id}',['as'=>'updatejabatan', 'uses'=>'Jabatan@update']);
+
+ Route::delete('/deletejabatan/{id}',['as'=>'delete_jabatan','uses'=>'Jabatan@destroy']);
 
 
 //{url:poin kepemimpinan}

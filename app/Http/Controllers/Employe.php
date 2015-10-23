@@ -58,7 +58,7 @@ class Employe extends Controller
         $request = Request::create('api/employe','POST',$input);
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
-        $statuss=$respose->status;
+        $statuss = $respose->status;
         return View::make('admin.employee.create')->with('statuss')->with(compact('data'));
 
     }
