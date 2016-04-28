@@ -21,6 +21,7 @@ Route::group(['prefix' => 'api'/*,'middleware'=>'simpleauth'*/], function()
     Route::resource('amanah','Api\AmanahController');
     Route::resource('karir', 'Api\KarirController');
     Route::resource('jabatan','Api\JabatanController');
+    Route::resource('absensi','Api\AbsensiController');
 });
 
 //model
@@ -94,7 +95,7 @@ Route::post('/editemployee/{id}',['as'=>'updateemployee','uses'=>'Employe@update
 
 Route::delete('/delete_employe/{id}',['as'=>'delete_employee','uses'=>'Employe@destroy']);
 
-Route::get('/detail_employee/{id}',['as'=>'show_employee','uses'=>'Employe@show']);
+Route::get('/detail/{id}',['as'=>'show_employee','uses'=>'Api\EmployeController@show']);
 
 
 
@@ -277,20 +278,23 @@ Route::get('/jamkerja', ['as'=>'jamkerja', function(){
         return view('admin/jkerja/jkerja');
 }]);
 
+
+
 //////////////////absensi////////////////////
-Route::get('/absensi',['as'=>'absensi', function(){
-        return view('admin/absensi/absensi');
-}]);
+Route::get('/absensi',['as'=>'absensi','uses'=>'Absensi@index']);
 
-Route::get('/editabsensi',['as'=>'editabsensi', function(){
-        return view('admin/absensi/edit');
-}]);
+Route::get('/editabsensi/{id}',['as'=>'editabsensi', 'uses'=>'Api\AbsensiController@edit']);
 
-Route::get('/addabsensi',['as'=>'addabsensi', function(){
-        return view('admin/absensi/create');
-}]);
+Route::post('editabsensi/{id}',['as'=>'updateabsensi', 'uses'=>'Absensi@update']);
 
-// amanah
+Route::get('/addabsensi',['as'=>'addabsensi','uses'=>'Absensi@create']);
+
+Route::post('/addabsensi',['as'=>'absensi_store','uses'=>'Absensi@store']);
+
+Route::delete('/deleteabsensi/{id}',['as'=>'delete_absensi', 'uses'=>'Absensi@destroy']);
+
+
+//////////////// amanah/////////////////////////////
 Route::get('/amanah',['as'=>'amanah','uses'=>'Amanah@index']);
 
 Route::get('/editamanah/{id}',['as'=>'editamanah', 'uses'=>'Api\AmanahController@edit']);

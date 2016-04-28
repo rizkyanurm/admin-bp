@@ -23,7 +23,14 @@ class Divisi extends Controller
         $request =  Request::create('api/divisi','GET');
         $respose  = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
+        // $domi=8.0; $rouep =2.9;
+        // for ($i = 0; $i < 10; $i++){
+        //     print($domi);
+        //     $sum =$domi + $rouep;
+        //     print($sum);
+        // }
         return View::make('admin.divisi.divisi', compact('data'));
+        // return $domi;
     }
 
     /**
@@ -123,5 +130,8 @@ class Divisi extends Controller
         $data = $respose->data->response;
         $messages = $respose->message;
         return redirect::route('divisi')->with(compact('data'))->withFlashMessage($messages);
+    }
+    public function hitung(){
+
     }
 }

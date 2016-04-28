@@ -36,9 +36,9 @@
 						<tbody>
 						
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>Mengikuti kegiatan kantor secara rutin </td>
+								<td>Disiplin</td>
+								<td>6% </td>
 								<td>
 									<div class="btn btn-default btn-rounded btn-sm" >
                                     <span class="fa fa-pencil"></span>
@@ -49,7 +49,7 @@
                                     <div class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('trow_1');">
                                     <span class="fa fa-times"></span>
 
-                                    	{!! link_to_route('deletekarir','Delete') !!}
+                                    	{!! link_to_route('delete_karir','Delete') !!}
  									
                                     </div >
 								</td>

@@ -100,14 +100,16 @@ class EmployeController extends Controller
      */
     public function show($id)
     {
-         $employe=Employe::where('id_employe', $id)->get()->first();
-         return Response::json([
-                'status'=>true,
-                'data'=>[
-                    'request'=>Request::all(),
-                    'response'=>$employe
-                ]
-            ]);
+         // $employe=Employe::find($id);
+         // return Response::json([
+         //        'status'=>true,
+         //        'data'=>[
+         //            'request'=>Request::all(),
+         //            'response'=>$employe
+         //        ]
+         //    ]);
+        $data=Employe::find($id)->get();
+        return view('admin.employee.detail')->with(compact('data'));
 
     }
 

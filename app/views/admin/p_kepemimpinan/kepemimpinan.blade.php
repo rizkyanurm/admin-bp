@@ -21,13 +21,13 @@
 <span> Tambah Poin</span>
 </button>
 </a>
-
+<!-- 
 <a  href="{{url('/addpertanyaanp')}}">
 <button class="btn btn-warning" type="button" style="margin:10px 40px 20px 0px;">
 <span class="glyphicon glyphicon-plus-sign"></span>
 <span> Tambah pertanyaan</span>
 </button>
-</a>
+</a> -->
 
 					<table class="table datatable">
 						<thead>
@@ -39,8 +39,9 @@
 						<tbody>
 						
 							<tr>
-								<td></td>
-								<td></td>
+								<td>POIN KEPEMIMPINAN 1</td>
+							
+
 								<td>
 									<div class="btn btn-default btn-rounded btn-sm" >
                                     <span class="fa fa-pencil"></span>
@@ -51,12 +52,30 @@
                                     <div class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('trow_1');">
                                     <span class="fa fa-times"></span>
 
-                                    	{!! link_to_route('deletekarir','Delete') !!}
+                                    	{!! link_to_route('delete_karir','Delete') !!}
  									
                                     </div >
 								</td>
 							</tr>
+							<tr>
+								<td>POIN KEPEMIMPINAN 2</td>
 							
+
+								<td>
+									<div class="btn btn-default btn-rounded btn-sm" >
+                                    <span class="fa fa-pencil"></span>
+                                    
+                                    	{!! link_to_route('editpoinpimpin','Edit') !!}
+ 									</div>
+
+                                    <div class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('trow_1');">
+                                    <span class="fa fa-times"></span>
+
+                                    	{!! link_to_route('delete_karir','Delete') !!}
+ 									
+                                    </div >
+								</td>
+							</tr>
 						</tbody>
 					</table>
     </div>

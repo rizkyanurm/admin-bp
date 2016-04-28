@@ -1,5 +1,6 @@
 @extends('admin.admin')
 @section('breadcrumbs')
+{!! Breadcrumbs::render('editabsensi') !!}
 @endsection
 
 @section('content')
@@ -17,13 +18,22 @@
 				</div>
 			</div>
 			<!-- end panel heading -->
-
+	
 			<!-- panel body -->
+
+					@if (Session::has('flash_message'))
+				<div class="alert alert-warning" role="alert">
+					{{ Session::get('flash_message') }}
+				</div>
+	
+				  	@endif
+         
 				<div class="panel-body">
 				
+					
 				
-					{!! Form::open() !!}
-					@include ('admin/absensi/_include/_form',['submit_text'=>'Tambah','reset_text'=>'Reset'])
+					{!! Form::model($absensi,array('route'=>array('updateabsensi',$absensi->id_absensi))) !!}
+					@include ('admin/absensi/_include/_form',['submit_text'=>'Tambah'])
 					{!! Form::close() !!}
 				
 				</div>
@@ -33,3 +43,8 @@
 	</div>
 </div>
 @endsection
+
+
+
+ $('div.alert').delay(5000).slideUp(300);
+

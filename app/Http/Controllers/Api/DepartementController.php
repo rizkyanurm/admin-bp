@@ -48,7 +48,8 @@ class DepartementController extends Controller
     {
         $validator= validator::make(Request::all(),[
         'nama_departement' =>'required',
-        'kode_departement'=>'required|unique:Departement|max:5',
+        'kode_dept_divisi'=>'required|unique:Departement|max:5',
+        'nama_divisi'=>'required',
 
         ]);
 
@@ -65,7 +66,8 @@ class DepartementController extends Controller
 
         $store = new Departement;
         $store->nama_departement = Request::get('nama_departement');
-        $store->kode_departement =Request::get('kode_departement');
+        $store->kode_dept_divisi = Request::get('kode_dept_divisi');
+        $store->nama_divisi= Request::get('nama_divisi');
         if($store->save()) {
             return Response::json([
                 'status'=>true,
@@ -120,8 +122,9 @@ class DepartementController extends Controller
     {
         //
         $update=Departement::find($id);
-        $update->kode_departement = Request::get('kode_departement');
+        $update->kode_dept_divisi = Request::get('kode_dept_divisi');
         $update->nama_departement = Request::get('nama_departement');
+        $update->nama_divisi = Request::get('nama_divisi');
 
         if($update->save()) {
           return Response::json([

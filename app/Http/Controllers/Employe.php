@@ -60,6 +60,7 @@ class Employe extends Controller
         $data = $respose->data->response;
         $statuss = $respose->status;
         return View::make('admin.employee.create')->with('statuss')->with(compact('data'));
+        // return $data;
 
     }
 
@@ -72,12 +73,12 @@ class Employe extends Controller
     public function show($id)
     {
 
-        $request = Request::create('api/employe/{id}','GET');
+        $request = Request::create('api/employe/'.$id,'GET');
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
-        return $data;
+        // return $data;
 
-        // return View::make('admin.employee.detail')->with(compact('data'));
+        return View::make('admin.employee.detail')->with(compact('data'));
     }
 
     /**

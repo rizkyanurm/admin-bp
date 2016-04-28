@@ -22,11 +22,51 @@
 			<!-- end panel heading -->
 
 			<!-- panel body -->
+			
+  <!-- 
+				@if(isset($data))
+					@if(!($statuss))
+					
+						@if($data==='false')
+						<div class="alert alert-danger" role="alert" data-sound="fail">
+           				<p> id employee tidak ada </p>
+           				</div>
+
+							@else
+								<div class="alert alert-danger" role="alert">
+								@foreach($data as $error)
+								<button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+								<p> <strong>{{ $error }}</strong></p>
+								
+
+								@endforeach
+								</div>
+						
+           				@endif
+
+           				@elseif($statuss)
+           				<div class="alert alert-success" role="alert">
+                                <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                <strong>Bagus!</strong> Data absensi berhasil dimasukkan.
+                         </div>
+
+           			@endif
+           			
+           		@endif -->
+           		@if (Session::has('flash_message'))
+				<div class="alert alert-warning" role="alert">
+					{{ Session::get('flash_message') }}
+				</div>
+	
+				  	@endif
+
+			
+				</div>
 				<div class="panel-body">
 				
 				
 					{!! Form::open() !!}
-					@include ('admin/absensi/_include/_form',['submit_text'=>'Tambah','reset_text'=>'Reset'])
+					@include ('admin/absensi/_include/_form',['submit_text'=>'Tambah'])
 					{!! Form::close() !!}
 				
 				</div>

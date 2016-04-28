@@ -30,6 +30,7 @@
 						<tr>
 							<th>Nama Departement</th>
 							<th>Kode</th>
+							<th>Nama Divisi</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -37,7 +38,9 @@
 						@foreach($data as $key=>$val)
 						<tr>
 							<td>{{$val->nama_departement}}</td>
-							<td>{{$val->kode_departement}}</td>
+							<td>{{$val->kode_dept_divisi}}</td>
+							<td>{{$val->nama_divisi}}</td>
+
 							<td>
 								<div class="btn btn-default btn-rounded btn-sm" >
 									<span class="fa fa-pencil"></span>

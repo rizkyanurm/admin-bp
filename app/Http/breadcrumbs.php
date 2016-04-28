@@ -256,7 +256,7 @@ Breadcrumbs::register('jamkerja', function($breadcrumbs){
 	});
 
 Breadcrumbs::register('absensi', function($breadcrumbs){
-		$breadcrumbs->parent('employee');
+		$breadcrumbs->parent('admin');
 		$breadcrumbs->push('Absensi', route('absensi'));
 	});
 	

@@ -28,6 +28,7 @@
 				<table class="table datatable">
 					<thead>
 						<tr>
+							<th>Id Employee</th>
 							<th>Name</th>
 							<th>Email</th>
 							<th>Jenis Kelamin</th>
@@ -41,6 +42,7 @@
 					<tbody>
 						@foreach($data as $key=>$val)
 						<tr>
+							<td>{{$val->id_employe}}</td>
 							<td>{{$val->nama}}</td>
 							<td>{{$val->email}}</td>
 							<td>{{$val->jenis_kelamin}}</td>
@@ -67,7 +69,7 @@
 
 									<div class="btn btn-primary btn-rounded btn-sm">
 										<span class="glyphicon glyphicon-file"></span>
-										{!! link_to_route('delete_employee','detail') !!}
+										{!! link_to_route('show_employee','detail',($val->id_employe))!!}
 									</div>
 								</td>
 							</tr>

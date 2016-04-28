@@ -23,10 +23,20 @@
 					</button>
 				</a>
 
+					@if (Session::has('flash_message'))
+				<div class="alert alert-success" role="alert">
+
+
+					{{ Session::get('flash_message') }}
+				</div>
+				@endif
+
 				<table class="table datatable">
 					<thead>
+
+
 						<tr>
-							<th rowspan="2">id employee</th>
+							<th rowspan="2">id employe</th>
 							<th rowspan="2">Tanggal</th>
 							<th rowspan="2">Status</th>
 							<th rowspan="2">Total Jam</th>
@@ -46,27 +56,38 @@
 						</tr>
 					</thead>
 					<tbody>
-
+					@foreach($data as $key=>$val)
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{$val->id_employe}}</td>
+							<td>{{$val->tgl_absensi}}</td>
+							<td>{{$val->status}}</td>
+							<td>{{$val->total_jam}}</td>
+							<td>{{$val->jml_terlambat}}</td>
+							<td>{{$val->jammasuk_shift1}}</td>
+							<td>{{$val->jamkeluar_shift1}}</td>
+							<td>{{$val->jammasuk_shift2}}</td>
+							<td>{{$val->jamkeluar_shift2}}</td>
+							<td>{{$val->jamasuk_lembur}}</td>
+							<td>{{$val->jamkeluar_lembur}}</td>
+							
 							<td>
 								<div class="btn btn-default btn-rounded btn-sm" >
 									<span class="fa fa-pencil"></span>
 
-									{!! link_to_route('editabsensi','Edit') !!}
+									{!! link_to_route('editabsensi','Edit',($val->id_absensi)) !!}
+
 								</div>
+
+									{!! Form::open(array(
+									'route'=>array('delete_absensi',$val->id_absensi ),
+									'method'=>'DELETE')) !!}
+
+									{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-rounded btn-sm']) !!}
+
+									{!! Form::close()!!}
 							</td>
 						</tr>
+					@endforeach
 					</tbody>
 				</table>
 			</div>

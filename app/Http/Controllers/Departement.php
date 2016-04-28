@@ -43,9 +43,11 @@ class Departement extends Controller
   public function store(Request $request)
   {
     $input=[
-      'kode_departement'=>Input::get('kode_departement'),
+      'kode_dept_divisi'=>Input::get('kode_dept_divisi'),
       'nama_departement'=>Input::get('nama_departement'),
+      'nama_divisi'=>Input::get('nama_divisi'),
     ];
+
     $request = Request::create('api/departement','POST',$input);
     $respose = json_decode(Route::dispatch($request)->getContent());
     $data = $respose->data->response;
@@ -91,8 +93,9 @@ class Departement extends Controller
   {
     //
     $input=[
-      'kode_departement'=>Input::get('kode_departement'),
+      'kode_dept_divisi'=>Input::get('kode_dept_divisi'),
       'nama_departement'=>Input::get('nama_departement'),
+      'nama_divisi'=>Input::get('nama_divisi'),
     ];
 
     $request = Request::create('api/departement/'.$id, 'PUT', $input);

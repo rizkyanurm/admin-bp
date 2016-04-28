@@ -21,7 +21,7 @@
                                @foreach($data as $key=>$val)
                                   <tr>
                                   <th>Nama</th>
-                                  <td>{{ $val->nama }}</td>
+                                  <td>{{$val->nama}}</td>
                                   </tr>
 
                                   <tr>
@@ -68,6 +68,10 @@
                                     <button class="btn btn-primary pull-right">Submit</button>
                                 </div>                            
                             </div>
+
+
+
+                            
 </div>
 
 @stop
