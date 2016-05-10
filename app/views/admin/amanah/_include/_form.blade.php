@@ -5,7 +5,7 @@
 			<div class="col-md-6 col-xs-12">
 				<!-- <div class="input-group"> -->
 				{!!Form::input(null,'nama_amanah', null,['class' => 'form-control']) !!}
-				<span class="help-block"> </span>
+				<span class="help-block">min : 2 Karakter max : 15 Karakter </span>
 				<!-- </div> -->
 			</div>
 		</div>
@@ -15,7 +15,7 @@
 			<div class="col-md-6 col-xs-12">
 				<!-- <div class="input-group"> -->
 				{!!Form::input(null, 'tunjangan',null,['class' => 'form-control']) !!}
-				<span class="help-block"> </span>
+				<span class="help-block">Tunjangan karyawan dalam Rupiah.</span>
 				<!-- </div> -->
 			</div>
 		</div>

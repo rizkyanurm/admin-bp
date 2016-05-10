@@ -1,13 +1,15 @@
 <!-- START PRELOADS -->
-<audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
-<audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+<audio id="audio-alert" src="assets/audio/alert.mp3" preload="auto"></audio>
+<audio id="audio-fail" src="assets/audio/fail.mp3" preload="auto"></audio>
 <!-- END PRELOADS -->      
 
 <!-- START SCRIPTS -->
 <!-- START PLUGINS -->
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/jquery/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/jquery/jquery-ui.min.js')}}"></script>
-<script type="text/javascript" src="{{URL::to('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>        
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script> 
+')}}
+
 <!-- END PLUGINS -->
 <!-- START THIS PAGE PLUGINS-->        
 <script type='text/javascript' src="{{URL::to('assets/js/plugins/icheck/icheck.min.js')}}"></script>        
@@ -24,6 +26,14 @@
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/owl/owl.carousel.min.js')}}"></script>                 
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/moment.min.js')}}"></script>
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/daterangepicker/daterangepicker.js')}}"></script>
+
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/validationengine/languages/jquery.validationEngine-en.js')}}" ></script>
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/validationengine/jquery.validationEngine.js')}}" ></script>
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/jquery-validation/jquery.validate.js')}}" ></script>
+
+
 <!-- END THIS PAGE PLUGINS-->        
 <!-- START TEMPLATE -->
 <script type="text/javascript" src="{{URL::to('assets/js/settings.js')}}"></script>

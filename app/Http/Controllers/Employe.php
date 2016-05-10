@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Response, Route, View, Input;
 
+
 class Employe extends Controller
 {
     /**
@@ -59,7 +60,15 @@ class Employe extends Controller
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
         $statuss = $respose->status;
-        return View::make('admin.employee.create')->with('statuss')->with(compact('data'));
+        $messages=$respose->message;
+
+
+        if($statuss===false){
+            return redirect::route('addemployee')->withInput()->withFlashMessage('Email sudah terdaftar, Coba Email lainnya');
+
+        }elseif($statuss===true){
+            return redirect::route('employee')->with(compact('data'))->withFlashMessage($messages);
+        }
         // return $data;
 
     }
@@ -90,7 +99,7 @@ class Employe extends Controller
     public function edit($id)
     {
 
-       // $employe=Employe::findorfail($id);
+        // $employe=Employe::findorfail($id);
         $request = Request::create('api/employe/'.$id,'GET');
 
     }
@@ -104,7 +113,7 @@ class Employe extends Controller
      */
     public function update(Request $request, $id)
     {
-         $input=[
+        $input=[
             'nama' => Input::get('nama'),
             'email' => Input::get('email'),
             'tgl_lahir' => Input::get('tgl_lahir'),
@@ -115,11 +124,22 @@ class Employe extends Controller
             'no_telp' => Input::get('no_telp'),
         ];
 
+
         $request = Request::create('api/employe/'.$id,'PUT',$input);
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
         $messages=$respose->message;
-        return redirect::route('employee')->with(compact('data'))->withFlashMessage($messages);
+        $statuss = $respose->status;
+
+
+
+
+        if($statuss===false){
+            return redirect()->back()->withInput()->withFlashMessage('Email sudah terdaftar, Coba Email lainnya');
+
+        }elseif($statuss===true){
+            return redirect::route('employee')->with(compact('data'))->withFlashMessage($messages);
+        }
 
 
     }

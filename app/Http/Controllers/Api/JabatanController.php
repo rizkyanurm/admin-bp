@@ -49,14 +49,16 @@ class JabatanController extends Controller
     {
         //
         $validator = Validator::make(Request::all(),[
-          'jabatan' => 'required',
-          'tunjangan' => 'required|integer',
-          'jum_staff' => 'required|integer',
+          'jabatan' => 'required|unique:jabatan',
+          'tunjangan' => 'required',
+          'jum_staff' => 'required',
+            
+            
           ]);
         if ($validator->fails()){
           return Response::json([
               'status' =>false,
-              'message' => null,
+              'message' => 'Maaf Data Gagal disimpan: Data Jabatan telah tersedia',
               'data' =>[
                   'request'=> Request::all(),
                   'response' => $validator->errors()->all()
@@ -79,7 +81,15 @@ class JabatanController extends Controller
                     ]
               ]);
         }
-
+        
+            return Response::json([
+                'status'=>true,
+                'message'=>'Maaf! Data gagal dimasukkan',
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>null,
+                ]
+            ]);
     }
 
     /**
@@ -116,6 +126,23 @@ class JabatanController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $validator = Validator::make(Request::all(),[
+          'jabatan' => 'required|unique:jabatan',
+          'tunjangan' => 'required',
+          'jum_staff' => 'required',
+            
+            
+          ]);
+        if ($validator->fails()){
+          return Response::json([
+              'status' =>false,
+              'message' => 'Maaf Data Gagal disimpan: Data Jabatan Telah tersedia',
+              'data' =>[
+                  'request'=> Request::all(),
+                  'response' => $validator->errors()->all()
+                ]
+            ]);
+        }
         $update = Jabatan::find($id);
         $update->jabatan = Request::get('jabatan');
         $update->tunjangan = Request::get('tunjangan');
@@ -132,6 +159,14 @@ class JabatanController extends Controller
 
             ]);
         }
+          return Response::json([
+                'status'=>true,
+                'message'=>'Maaf! Data gagal Disimpan',
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>null,
+                ]
+            ]);
     }
 
     /**

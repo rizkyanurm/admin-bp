@@ -56,7 +56,16 @@ class Amanah extends Controller
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
         $statuss = $respose->status;
-        return View::make('admin.amanah.create')->with('statuss')->with(compact('data'));
+         $messages=$respose->message;
+//        return View::make('admin.amanah.create')->with('statuss')->with(compact('data'));
+        if($statuss===false){
+            return redirect()->back()->withInput()->withFlashMessage($messages);
+
+
+        }elseif($statuss===true){
+            return redirect::route('amanah')->with(compact('data'))->withFlashMessage($messages);
+      }
+        
     }
 
     /**
@@ -99,8 +108,20 @@ class Amanah extends Controller
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
         $messages = $respose->message;
-        return redirect::route('amanah')->with(compact('data'))->withFlashMessage($messages);
-    }
+        $statuss =$respose->status;
+        
+//        return redirect::route('amanah')->with(compact('data'))->withFlashMessage($messages);
+        if($statuss===false){
+      return redirect()->back()->withInput()->withFlashMessage($messages);
+
+
+    }elseif($statuss===true){
+          return redirect::route('amanah')->with(compact('data'))->withFlashMessage($messages);
+      }
+
+
+}
+    
 
     /**
      * Remove the specified resource from storage.

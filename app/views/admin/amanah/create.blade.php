@@ -22,6 +22,7 @@
 						<!-- end panel heading -->
 
 						<!-- panel body -->
+<!--
 						<div class="panel-body">
 							@if(isset($data))
 							@if(!($statuss))
@@ -32,8 +33,18 @@
 							</div>
 							@endif
 							@endif
+-->
+                        
+                        	@if (Session::has('flash_message'))
+								<div class="alert alert-danger" role="alert">
+                                		<button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span>
+                                		<span class="sr-only">Close</span></button>
+                               			{{ Session::get('flash_message') }}
+                            	</div>
+						@endif
 
-							{!! Form::open(['route'=>['amanah_store']]) !!}
+
+							{!! Form::open(array('route'=>'amanah_store', 'class'=>'form-horizontal', 'id'=>'jvalidate', 'role'=>'form', 'novalidate'=>'novalidate')) !!}
 							@include ('admin/amanah/_include/_form',['submit_text'=>'Simpan'])
 							{!! Form::close() !!}
 
@@ -44,3 +55,28 @@
 			</div>
 		</div>
 		@endsection
+
+@section('script')
+	<script type="text/javascript">
+            var jvalidate = $("#jvalidate").validate({
+                ignore: [],
+                rules: {
+                		 nama_amanah: {
+                                required: true,
+                                minlength:2,
+                                maxlength:15
+                        },                                       
+                        tunjangan:{
+                                required:true,
+                                digits:true,
+                                max:99999999
+                           
+                    
+                         },
+
+                    }                                    
+                });                                    
+
+        </script>
+	@endsection
+

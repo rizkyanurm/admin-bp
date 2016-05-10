@@ -17,7 +17,7 @@
 	<div class="col-md-4 col-xs-12">
 		<!-- <div class="input-group"> -->
 			{!!Form::input(null, 'tgl_absensi',null,['class' => 'form-control datepicker']) !!}
-			<span class="help-block"> </span>
+			<span class="help-block">Masukkan tanggal Absensi</span>
 		<!-- </div> -->
 	</div>
 </div>
@@ -37,7 +37,7 @@
 	<div class="col-md-4 col-xs-12">
 		<!-- <div class="input-group bootstrap-timepicker"> -->
 			{!!Form::input(null, 'total_jam',null,['class' => 'form-control']) !!}
-			<span class="help-block"> </span>
+			<span class="help-block"> Masukkan total Jam kerja karyawan </span>
 		<!-- </div> -->
 	</div>
 </div>
@@ -47,27 +47,28 @@
 	<div class="col-md-4 col-xs-12">
 		<!-- <div class="input-group bootstrap-timepicker"> -->
 			{!!Form::input(null, 'jml_terlambat',null,['class' => 'form-control']) !!}
-			<span class="help-block"> </span>
+			<span class="help-block"> Masukkan jumlah jam karyawan terlambat </span>
 		<!-- </div> -->
 	</div>
 </div>
 
 <div class="form-group">
 	{!!Form::label('jammasuk_shift1', 'Masuk Shift 1 ',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-	<div class="col-md-4">
+	<div class="col-md-3 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
 			{!!Form::input(null, 'jammasuk_shift1',null,['class' => 'form-control timepicker', 'type'=>'text']) !!}
-			<span class="help-block"></span><span class="input-group-addon"><span class="glyphicon glyphicon-time">
+          
+			<span class="help-block"></span>
 		</div>
 	</div>
 </div>
 
 <div class="form-group">
 	{!!Form::label('jamkeluar_shift1', 'Keluar Shift 1 ',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
-	<div class="col-md-4 col-xs-12">
+	<div class="col-md-3 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
 			{!!Form::input(null, 'jamkeluar_shift1',null,['class' => 'form-control timepicker', 'type'=>'text']) !!}
-			<span class="help-block"> </span><span class="input-group-addon"><span class="glyphicon glyphicon-time">
+			<span class="help-block"> </span>
 		</div>
 	</div>
 </div>
@@ -79,7 +80,7 @@
 	<div class="col-md-4 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
 			{!!Form::input(null, 'jammasuk_shift2',null,['class' => 'form-control timepicker']) !!}
-			<span class="help-block"> </span><span class="input-group-addon"><span class="glyphicon glyphicon-time">
+			<span class="help-block"> </span>
 		</div>
 	</div>
 </div>
@@ -89,7 +90,7 @@
 	<div class="col-md-4 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
 			{!!Form::input(null, 'jamkeluar_shift2',null,['class' => 'form-control timepicker']) !!}
-			<span class="help-block"> </span><span class="input-group-addon"><span class="glyphicon glyphicon-time">
+			<span class="help-block"> </span>
 		</div>
 	</div>
 </div>
@@ -101,7 +102,7 @@
 	<div class="col-md-4 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
 			{!!Form::input(null, 'jamasuk_lembur',null,['class' => 'form-control timepicker']) !!}
-			<span class="help-block"> </span><span class="input-group-addon"><span class="glyphicon glyphicon-time">
+			<span class="help-block"> </span>
 		</div>
 	</div>
 </div>
@@ -111,7 +112,7 @@
 	<div class="col-md-4 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
 			{!!Form::input(null, 'jamkeluar_lembur',null,['class' => 'form-control timepicker']) !!}
-			<span class="help-block"> </span><span class="input-group-addon"><span class="glyphicon glyphicon-time">
+			<span class="help-block"> </span>
 		</div>
 	</div>
 </div>

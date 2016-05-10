@@ -53,9 +53,19 @@ class Jabatan extends Controller
           $respose = json_decode(Route::dispatch($request)->getContent());
           $data = $respose->data->response;
           $statuss =$respose->status;
-          // return $data;
-          return View::make('admin.jabatan.create')->with('statuss')->with(compact('data'));
-    }
+          $messages=$respose->message;
+          //return $data;
+          //return View::make('admin.jabatan.create')->with('statuss')->with(compact('data'));
+        
+          if($statuss===false){
+          return redirect()->back()->withInput()->withFlashMessage($messages);
+
+
+          }elseif($statuss===true){
+          return redirect::route('jabatan')->with(compact('data'))->withFlashMessage($messages);
+          }
+
+        }
 
     /**
      * Display the specified resource.
@@ -98,9 +108,18 @@ class Jabatan extends Controller
         $request = Request::create('api/jabatan/'.$id, 'PUT',$input);
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
-        $messages=$respose->message;
-        return redirect::route('jabatan')->with(compact('data'))->withFlashMessage($messages);
+        $messages = $respose->message;
+        $statuss = $respose->status;
+//        return redirect::route('jabatan')->with(compact('data'))->withFlashMessage($messages);
+        
+        if($statuss===false){
+          return redirect()->back()->withInput()->withFlashMessage($messages);
 
+
+          }elseif($statuss===true){
+              return redirect::route('jabatan')->with(compact('data'))->withFlashMessage($messages);
+          }
+        
     }
 
     /**

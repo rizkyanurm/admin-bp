@@ -51,8 +51,8 @@ class EmployeController extends Controller
             'nama' => 'required',
             'email' => 'required|email|unique:employe,email',
             'tgl_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-            'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Lainnya',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required|numeric',
             'umur'=>'numeric',
@@ -81,7 +81,7 @@ class EmployeController extends Controller
         if ($store->save()) {
             return Response::json([
                 'status'=>true,
-                'message' => null,
+                'message' => 'Data Berhasil Disimpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>[
@@ -138,6 +138,29 @@ class EmployeController extends Controller
     public function update(Request $request, $id)
     {
 
+
+            $validator = Validator::make(Request::all(), [
+            'nama' => 'required',
+            'email' => 'required|email|unique:employe,email',
+            'tgl_lahir' => 'required|date',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required|numeric',
+            'umur'=>'numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json([
+                'status'=>false,
+                'message' => null,
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>$validator->errors()->all()
+                ]
+            ]);
+        }
+
         $update = Employe::find($id);
         $update->nama = Request::get('nama');
         $update->email = Request::get('email');
@@ -150,7 +173,7 @@ class EmployeController extends Controller
         if ($update->save()) {
             return Response::json([
                 'status'=>true,
-                'message' => 'data has been updated',
+                'message' => 'Data Karyawan Berhasil di Update!',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>Employe::all(),
@@ -173,7 +196,7 @@ class EmployeController extends Controller
         $employe->delete();
         return Response::json([
                 'status'=>true,
-                'message' =>'Employe has been deleted',
+                'message' =>'Data Karyawan Berhasil dihapus!',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>Employe::all(),

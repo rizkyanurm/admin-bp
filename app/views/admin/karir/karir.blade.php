@@ -11,17 +11,20 @@
 
 	<div class="col-md-12">
 		<div class="panel-heading">
-			<h3 class="panel-title">Jenjang Karir</h3>
+			<h3 class="panel-title">Daftar Jenjang Karir</h3>
 		</div>
 
 
 		<div class="panel-body">
 
 			@if (Session::has('flash_message'))
-				<div class="alert alert-success" role="alert">
-					{{ Session::get('flash_message') }}
-				</div>
-			@endif
+								<div class="alert alert-succes" role="alert">
+                                		<button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span>
+                                		<span class="sr-only">Close</span></button>
+                               			{{ Session::get('flash_message') }}
+                            	</div>
+            @endif
+
 
 			<a  href="{{url('/addkarir')}}">
 				<button class="btn btn-warning" type="button" style="margin:10px 40px 20px 0px;">
@@ -30,7 +33,7 @@
 				</button>
 			</a>
 
-			<table class="table datatable">
+				<table class="table datatable">
 				<thead>
 					<tr>
 						<th>Golongan</th>
@@ -49,24 +52,26 @@
 						<td>
 							<div class="btn btn-default btn-rounded btn-sm" >
 								<span class="fa fa-pencil"></span>
-
 								{!! link_to_route('editkarir','Edit',($val->id_karir)) !!}
 							</div>
-
 							{!!Form::open(array(
 								'route'=>array('delete_karir', $val->id_karir),
 								'method'=>'DELETE')) !!}
 
 							{!! Form::submit('Delete',['class'=> 'btn btn-danger btn-rounded btn-sm'])!!}
+                            
+                            {!! Form::close()!!}
 						</td>
 					</tr>
 					@endforeach
 				</tbody>
 			</table>
 
-
 		</div>
 	</div>
 
 
 	@endsection
+
+    @stop
+

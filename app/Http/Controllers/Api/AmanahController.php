@@ -1,15 +1,16 @@
 <?php
 
 namespace Bimaproteksi\Http\Controllers\Api;
-
 // use Illuminate\Http\Request;
-
 use Bimaproteksi\Http\Requests;
 use Bimaproteksi\Http\Controllers\Controller;
 use Bimaproteksi\Models\Amanah;
 use Response;
 use Request;
 use Validator, redirect;
+
+
+
 
 class AmanahController extends Controller
 {
@@ -51,14 +52,14 @@ class AmanahController extends Controller
     {
         //
         $validator = Validator::make(Request::all(),[
-          'nama_amanah' =>'required',
+          'nama_amanah' =>'required|unique:amanah',
           'tunjangan' => 'required',
           ]);
 
             if($validator->fails()){
               return Response::json([
                   'status' => false,
-                  'message' => null,
+                  'message' => 'Maaf nama Amanah telah tersedia',
                   'data' =>[
                         'request' => Request::all(),
                         'response' => $validator->errors()->all()
@@ -81,6 +82,16 @@ class AmanahController extends Controller
                     ]
                 ]);
             }
+             return Response::json([
+                'status'=>false,
+                'message' =>'Maaf! Data gagal dimasukkan',
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>'false'
+                    
+                ]
+            ]);
+        
     }
 
     /**
@@ -117,19 +128,44 @@ class AmanahController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make(Request::all(),[
+          'nama_amanah' =>'required|unique:amanah',
+          'tunjangan' => 'required',
+          ]);
+
+            if($validator->fails()){
+              return Response::json([
+                  'status' => false,
+                  'message' => 'Maaf nama Amanah telah tersedia',
+                  'data' =>[
+                        'request' => Request::all(),
+                        'response' => $validator->errors()->all()
+                    ]
+                ]);
+
+            }
         $update = Amanah::find($id);
         $update->nama_amanah = Request::get('nama_amanah');
         $update->tunjangan = Request::get('tunjangan');
         if($update->save()){
           return Response::json([
               'status'=>true,
-              'message'=>'data has been updated',
+              'message'=>'Data Amanah Berhasil disimpan',
               'data'=>[
                 'request'=>Request::all(),
                 'response'=>Amanah::all(),
                 ]
             ]);
         }
+          return Response::json([
+                'status'=>false,
+                'message' =>'Data Absensi gagal diSimpan',
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>null,
+                    
+                ]
+            ]);
     }
 
     /**
@@ -145,7 +181,7 @@ class AmanahController extends Controller
         $amanah->delete();
         return Response::json([
           'status'=>true,
-          'message'=>'Amanah has been deleted',
+          'message'=>'Data Absensi berhasil dihapus',
           'data'=>[
               'request'=>Request::all(),
               'response' =>Amanah::all(),

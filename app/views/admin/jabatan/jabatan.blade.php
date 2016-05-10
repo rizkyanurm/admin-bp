@@ -11,11 +11,19 @@
 			</div>
 			<div class="panel-body">
 
-				@if (Session::has('flash_message'))
-				<div class="alert alert-success" role="alert">
-					{{ Session::get('flash_message') }}
-				</div>
-				@endif
+				 <!-- Start Flash Message -->
+
+						@if (Session::has('flash_message'))
+								<div class="alert alert-success" role="alert">
+                                		<button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span>
+                                		<span class="sr-only">Close</span></button>
+                               			{{ Session::get('flash_message') }}
+                            	</div>
+						@endif
+
+						<!-- End Flash Message -->
+
+
 
 				<a  href="{{url('/addjabatan')}}">
 					<button class="btn btn-warning" type="button" style="margin:10px 40px 20px 0px;">

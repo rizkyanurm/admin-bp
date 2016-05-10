@@ -20,10 +20,10 @@
 		$breadcrumbs->push('Departemen', route('departemen'));
 	});
 
-	//Home > Departemen > Add
+	//Home > Departemen > tambah
 	Breadcrumbs::register('adddepartemen', function($breadcrumbs){
 		$breadcrumbs->parent('departemen');
-		$breadcrumbs->push('Add Departemen', route('adddepartemen'));
+		$breadcrumbs->push('Tambah Departemen', route('adddepartemen'));
 	});
 
 	//Home > Departemen > Edit
@@ -40,25 +40,25 @@
 	//Home > Employee 
 	Breadcrumbs::register('employee', function($breadcrumbs){
 		$breadcrumbs->parent('admin');
-		$breadcrumbs->push('Employee', route('employee'));
+		$breadcrumbs->push('Karyawan', route('employee'));
 	});
 
-	//Home > Employee > Add
+	//Home > Employee > tambah
 	Breadcrumbs::register('addemployee', function($breadcrumbs){
 		$breadcrumbs->parent('employee');
-		$breadcrumbs->push('Add Employee', route('addemployee'));
+		$breadcrumbs->push('Tambah Karyawan', route('addemployee'));
 	});
 
 	//Home > Employee > Edit
 	Breadcrumbs::register('editemployee', function($breadcrumbs){
 		$breadcrumbs->parent('employee');
-		$breadcrumbs->push('Edit Employee', route('editemployee'));
+		$breadcrumbs->push('Edit Karyawan', route('editemployee'));
 	});
 
 	//Home > Employee > Detail
 	Breadcrumbs::register('detailemployee', function($breadcrumbs){
 		$breadcrumbs->parent('employee');
-		$breadcrumbs->push('Detail Employee', route('show_employee'));
+		$breadcrumbs->push('Detail Karyawan', route('show_employee'));
 	});
 
 
@@ -73,10 +73,10 @@
 		$breadcrumbs->push('Divisi', route('divisi'));
 	});
 
-	//Home > Departemen > Divisi> Add Divisi
+	//Home > Departemen > Divisi> tambah Divisi
 	Breadcrumbs::register('add divisi', function($breadcrumbs){
 		$breadcrumbs->parent('divisi');
-		$breadcrumbs->push('Add Divisi', route('adddivisi'));
+		$breadcrumbs->push('Tambah Divisi', route('adddivisi'));
 	});	
 	//Home > Departemen > Divisi> Edit Divisi
 	Breadcrumbs::register('edit divisi', function($breadcrumbs){
@@ -96,10 +96,10 @@
 		$breadcrumbs->push('Karir', route('karir'));
 	});
 
-	//Home > Karir > Add
+	//Home > Karir > tambah
 	Breadcrumbs::register('addkarir', function($breadcrumbs){
 		$breadcrumbs->parent('karir');
-		$breadcrumbs->push('Add Karir', route('addkarir'));
+		$breadcrumbs->push('Tambah Karir', route('addkarir'));
 	});
 
 	//Home > Karir > Edit
@@ -120,10 +120,10 @@
 		$breadcrumbs->push('Jabatan', route('jabatan'));
 	});
 
-	//Home > Jabatan > Add
+	//Home > Jabatan > tambah
 	Breadcrumbs::register('addjabatan', function($breadcrumbs){
 		$breadcrumbs->parent('jabatan');
-		$breadcrumbs->push('Add Jabatan', route('addjabatan'));
+		$breadcrumbs->push('Tambah Jabatan', route('addjabatan'));
 	});
 
 	//Home > Jabatan >Edit
@@ -140,7 +140,7 @@
 	});
 	Breadcrumbs::register('addpoinpimpin', function($breadcrumbs){
 		$breadcrumbs->parent('poinpimpin');
-		$breadcrumbs->push('Add Poin Pimpin', route('addpoinpimpin'));
+		$breadcrumbs->push('Tambah Poin Pimpin', route('addpoinpimpin'));
 	});
 	Breadcrumbs::register('editpoinpimpin', function($breadcrumbs){
 		$breadcrumbs->parent('poinpimpin');
@@ -153,7 +153,7 @@
 	});
 	Breadcrumbs::register('addpertanyaanp', function($breadcrumbs){
 		$breadcrumbs->parent('detailpoinpimpin');
-		$breadcrumbs->push('Add Pertanyaan', route('addpertanyaanp'));
+		$breadcrumbs->push('Tambah Pertanyaan', route('addpertanyaanp'));
 	});
 	Breadcrumbs::register('dtppimpin', function($breadcrumbs){
 		$breadcrumbs->parent('poinpimpin');
@@ -174,7 +174,7 @@ Breadcrumbs::register('poinkinerja', function($breadcrumbs){
 
 	Breadcrumbs::register('addbudaya', function($breadcrumbs){
 		$breadcrumbs->parent('budaya');
-		$breadcrumbs->push('Add Budaya', route('addbudaya'));
+		$breadcrumbs->push('Tambah Budaya', route('addbudaya'));
 	});
 	Breadcrumbs::register('editbudaya', function($breadcrumbs){
 		$breadcrumbs->parent('budaya');
@@ -187,7 +187,7 @@ Breadcrumbs::register('aspek', function($breadcrumbs){
 	});
 	Breadcrumbs::register('addaspek', function($breadcrumbs){
 		$breadcrumbs->parent('aspek');
-		$breadcrumbs->push('Add Aspek', route('addaspek'));
+		$breadcrumbs->push('Tambah Aspek', route('addaspek'));
 	});
 	Breadcrumbs::register('editaspek', function($breadcrumbs){
 		$breadcrumbs->parent('aspek');
@@ -200,7 +200,7 @@ Breadcrumbs::register('poin', function($breadcrumbs){
 	});
 	Breadcrumbs::register('addpoin', function($breadcrumbs){
 		$breadcrumbs->parent('poin');
-		$breadcrumbs->push('Add Poin', route('addpoin'));
+		$breadcrumbs->push('tambah Poin', route('addpoin'));
 	});
 	Breadcrumbs::register('editpoin', function($breadcrumbs){
 		$breadcrumbs->parent('poin');
@@ -224,7 +224,7 @@ Breadcrumbs::register('kaizen', function($breadcrumbs){
 
 	Breadcrumbs::register('addkaizen', function($breadcrumbs){
 		$breadcrumbs->parent('kaizen');
-		$breadcrumbs->push('Add Kaizen', route('addkaizen'));
+		$breadcrumbs->push('Tambah Kaizen', route('addkaizen'));
 	});
 
 	Breadcrumbs::register('editkaizen', function($breadcrumbs){
@@ -242,7 +242,7 @@ Breadcrumbs::register('kpi', function($breadcrumbs){
 });
 	breadcrumbs::register('addkpi', function($breadcrumbs){
 		$breadcrumbs->parent('kpi');
-		$breadcrumbs->push('add KPI', route('addkpi'));
+		$breadcrumbs->push('Tambah KPI', route('addkpi'));
 	});
 	breadcrumbs::register('editkpi', function($breadcrumbs){
 		$breadcrumbs->parent('kpi');
@@ -262,7 +262,7 @@ Breadcrumbs::register('absensi', function($breadcrumbs){
 	
 	breadcrumbs::register('addabsensi', function($breadcrumbs){
 		$breadcrumbs->parent('absensi');
-		$breadcrumbs->push('Add Absensi', route('addabsensi'));
+		$breadcrumbs->push('Tambah Absensi', route('addabsensi'));
 	});
 	breadcrumbs::register('editabsensi',function($breadcrumbs){
 		$breadcrumbs->parent('absensi');
@@ -275,7 +275,7 @@ breadcrumbs::register('amanah', function($breadcrumbs){
 	});
 	breadcrumbs::register('addamanah', function($breadcrumbs){
 		$breadcrumbs->parent('amanah');
-		$breadcrumbs->push('Add Amanah', route('addamanah'));
+		$breadcrumbs->push('Tambah Amanah', route('addamanah'));
 	});
 	breadcrumbs::register('editamanah', function($breadcrumbs){
 		$breadcrumbs->parent('amanah');

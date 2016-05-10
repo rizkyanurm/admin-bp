@@ -51,14 +51,14 @@ class KarirController extends Controller
         //
         $validator = Validator::make(Request::all(),[
           'golongan' =>'required',
-          'pangkat' => 'required',
+          'pangkat' => 'required|unique:karir',
           'poin_kaizen' =>'required',
           'poin_kredit' =>'required',
           ]);
         if ($validator->fails()) {
           return Response::json([
             'status'=>false,
-            'message' =>null,
+            'message' =>'Maaf Data gagal dimasukkan: Data karir sudah ada',
             'data'=>[
               'request' =>Request::all(),
               'response' =>$validator->errors()->all()
@@ -74,7 +74,7 @@ class KarirController extends Controller
         if ($store->save()){
           return Response::json([
             'status'=>true,
-            'message' =>null,
+            'message' =>'Data berhasil Disimpan',
             'data' =>[
                 'request'=>Request::all(),
                 'response' =>[
@@ -85,7 +85,15 @@ class KarirController extends Controller
 
             ]);
 
-        }
+        }  
+        return Response::json([
+            'status'=>false,
+            'message' =>'Maaf! Data Gagal dimasukkan',
+            'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>'false'
+            ]
+        ]);
     }
 
     /**
@@ -138,6 +146,15 @@ class KarirController extends Controller
                   ]
               ]);
         }
+         return Response::json([
+                'status'=>false,
+                'message' =>'Data gagal di update: id tidak terdaftar',
+                'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>null,
+                    
+                ]
+            ]);
     }
 
     /**
@@ -153,7 +170,7 @@ class KarirController extends Controller
         $karir->delete();
         return Response::json([
             'status'=>true,
-            'message' => 'Karir has been deleted',
+            'message' => 'Data Karir berhasil dihapus',
             'data'=>[
               'request'=>Request::all(),
               'response'=>Karir::all(),

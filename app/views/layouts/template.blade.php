@@ -38,5 +38,6 @@
 			@include('layouts._include.message')                               
 		<!-- END MESSAGE BOX-->
 	@include('layouts._include.scripts')  
+	@yield('script')
 	</body>
 </html>

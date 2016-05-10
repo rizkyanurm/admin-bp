@@ -64,22 +64,13 @@ class AbsensiController extends Controller
            $validator = Validator::make(Request::all(), [
            
              'id_employe' => 'required',
-             'status' =>'required',
-             'total_jam' =>'numeric',
-             'tgl_absensi'=>'required',
-             'jml_terlambat' =>'numeric',
-             'jammasuk_shift1'=>'required',
-             'jamkeluar_shift1'=>'required',
-             'jammasuk_shift2'=>'required',
-             'jamkeluar_shift2'=>'required',
-             'jamasuk_lembur'=>'required',
-             'jamkeluar_lembur'=>'required',
+         
         ]);
 
         if ($validator->fails()) {
             return Response::json([
                 'status'=>false,
-                'message' => 'Maaf! Data gagal dimasukkan : Mohon Lengkapi Form',
+                'message' =>null,
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>$validator->errors()->all()
@@ -106,13 +97,12 @@ class AbsensiController extends Controller
         if ($store->save()) {
             return Response::json([
                 'status'=>true,
-                'message' =>'Data berhasil dimasukkan',
+                'message' =>'Data berhasil Disimpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>[
-                    'id_absensi'=>$store->id]
-                    
-                    
+                    'id_absensi'=>$store->id
+                    ]
                 ]
             ]);
         }
@@ -170,22 +160,12 @@ class AbsensiController extends Controller
          $validator = Validator::make(Request::all(), [
            
              'id_employe' => 'required',
-             'status' =>'required',
-             'total_jam' =>'numeric',
-             'tgl_absensi'=>'required',
-             'jml_terlambat' =>'numeric',
-             'jammasuk_shift1'=>'required',
-             'jamkeluar_shift1'=>'required',
-             'jammasuk_shift2'=>'required',
-             'jamkeluar_shift2'=>'required',
-             'jamasuk_lembur'=>'required',
-             'jamkeluar_lembur'=>'required',
         ]);
 
         if ($validator->fails()) {
             return Response::json([
                 'status'=>false,
-                'message' =>'data gagal diupdate : Mohon lengkapi form',
+                'message' =>null,
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>$validator->errors()->all()

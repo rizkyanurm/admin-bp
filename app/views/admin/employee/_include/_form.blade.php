@@ -3,11 +3,15 @@
 <div class="form-group">
 	{!!Form::label('nama', 'Nama',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-6 col-xs-12">
-		<!-- <div class="input-group"> -->
-		<!-- <span class="input-group-addon"><span class="fa fa-pencil"></span></span> -->
+		<!-- <div class="input-group">
+		<span class="input-group-addon"><span class="fa fa-pencil"></span></span> -->
 			{!!Form::input(null,'nama',null,['class' => 'form-control']) !!}
+
 		<!-- </div> -->
+			<span class="help-block">min = 2 karakter, max  = 20 karakter</span>
+
 	</div>
+
 </div>
 
 <div class="form-group">
@@ -15,7 +19,7 @@
 	<div class="col-md-6 col-xs-12">
 		<!-- <div class="input-group"> -->
 		<!-- <span class="input-group-addon"><span class="fa fa-envelope"></span></span> -->
-			{!!Form::input(null,'email', null,['class' => 'form-control email']) !!}
+			{!!Form::input(null,'email', null,['class' => 'form-control']) !!}
 		<!-- </div> -->
 	</div>
 </div>
@@ -24,10 +28,11 @@
 <div class="form-group">
 	{!!Form::label('tgl_lahir', 'Tanggal Lahir', ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-6 col-xs-12">
-		<!-- <div class="input-group"> -->
-		<!-- <span class="input-group-addon"><span class="fa fa-calendar-o"></span></span> -->
-			{!!Form::input('date','tgl_lahir',  null, ['class' => 'form-control datepicker']) !!}
-		<!-- </div> -->
+		<div class="input-group">
+		<span class="input-group-addon"><span class="fa fa-calendar-o"></span></span>
+				{!!Form::input(null, 'tgl_lahir',null,['class' => 'form-control datepicker']) !!}
+
+		</div>
 	</div>
 </div>
 
@@ -38,7 +43,8 @@
 	<div class="col-md-6 col-xs-12">
 		<!-- <div class="input-group"> -->
 		<!-- <span class="input-group-addon"></span> -->
-			{!!Form::input( null,'agama',null, ['class' => 'form-control']) !!}
+			{!!Form::select( 'agama',['Islam'=>'Islam','Katholik'=>'Katholik', 'Kristen'=>'Kristen','Hindu'=>'Hindu', 'Budha'=>'Budha'],null, ['class' => 'form-control']) !!}
+				
 		
 		<!-- </div> -->
 	</div>
@@ -50,7 +56,7 @@
 		<div class="col-md-6 col-xs-12">
 			<!-- <div class="input-group"> -->
 			<!-- <span class="input-group-addon"></span> -->
-				{!! Form::input( null,'jenis_kelamin', null, ['class' => 'form-control']) !!}
+				{!! Form::select( 'jenis_kelamin', ['Pria'=>'Pria', 'Wanita'=>'Wanita'],null, ['class' => 'form-control']) !!}
 			<!-- </div> -->
 		</div>
 </div>
@@ -84,6 +90,7 @@
 			<!-- </div> -->
 		</div>
 </div>
+
 
 
 <div class="panel-footer">

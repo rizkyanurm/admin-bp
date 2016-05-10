@@ -25,7 +25,7 @@
 						<div class="panel-body">
 
 
-							{!! Form::model($amanah,array('route'=>array('updateamanah',$amanah->id_amanah))) !!}
+							{!! Form::model($amanah,array('route'=>array('updateamanah',$amanah->id_amanah),'class'=>'form-horizontal', 'id'=>'jvalidate', 'role'=>'form', 'novalidate'=>'novalidate')) !!}
 							@include ('admin/amanah/_include/_form',['submit_text'=>'Simpan'])
 							{!! Form::close() !!}
 
@@ -36,3 +36,28 @@
 			</div>
 		</div>
 		@endsection
+
+@section('script')
+	<script type="text/javascript">
+            var jvalidate = $("#jvalidate").validate({
+                ignore: [],
+                rules: {
+                		 nama_amanah: {
+                                required: true,
+                                minLength:2,
+                                maxLength:15
+                        },                                       
+                        tunjangan:{
+                                required:true,
+                                max_value:99999999
+                           
+                    
+                         },
+
+                    }                                    
+                });                                    
+
+        </script>
+	@endsection
+
+

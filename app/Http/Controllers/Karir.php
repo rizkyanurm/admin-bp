@@ -55,7 +55,19 @@ class Karir extends Controller
       $respose = json_decode(Route::dispatch($request)->getContent());
       $data = $respose->data->response;
       $statuss = $respose->status;
-      return View::make('admin.karir.create')->with('statuss')->with(compact('data'));
+      $messages= $respose->message;
+//      return View::make('admin.karir.create')->with('statuss')->with(compact('data'));
+        
+            if($statuss===false){
+      return redirect()->back()->withInput()->withFlashMessage($messages);
+              
+
+
+    }elseif($statuss===true){
+          return redirect::route('karir')->with(compact('data'))->withFlashMessage($messages);
+      }
+
+        
     }
 
     /**
@@ -101,8 +113,19 @@ class Karir extends Controller
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
         $messages = $respose->message;
-        // return $messages;
-        return Redirect::route('karir')->with(compact('data'))->withFlashMessage($messages);
+        $statuss =$respose->status;
+        
+            if($statuss===false){
+      return redirect()->back()->withInput()->withFlashMessage($messages);
+
+
+    }elseif($statuss===true){
+          return redirect::route('karir')->with(compact('data'))->withFlashMessage($messages);
+      }
+
+        
+//        // return $messages;
+//        return Redirect::route('karir')->with(compact('data'))->withFlashMessage($messages);
     }
 
     /**
