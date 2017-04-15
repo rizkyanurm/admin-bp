@@ -41,7 +41,7 @@ class Divisi extends Controller
     public function create()
     {
       $departement=Departement::all();
-        return View::make('admin.divisi.create')->with(compact('departement'));;
+        return View::make('admin.divisi.create')->with(compact('departement'));
     }
 
     /**
@@ -65,9 +65,19 @@ class Divisi extends Controller
         $data = $respose->data->response;
         $statuss = $respose->status;
         $departement= Departement::all();
-        return View::make('admin.divisi.create')->with('statuss')->with(compact('data'))->with(compact('departement'));
+        $messages=$respose->message;
+        
+        // Return Data
+         if($statuss===false){
+            return redirect()->back()->withInput()->withFlashMessage($messages);
 
+
+        }elseif($statuss===true){
+            return redirect::route('divisi')->with(compact('data'))->withFlashMessage($messages);
+      }
+        
     }
+    
 
     /**
      * Display the specified resource.
@@ -107,13 +117,24 @@ class Divisi extends Controller
         $input  =[
           'nama_divisi'=> Input::get('nama_divisi'),
           'kode_divisi'=>Input::get('kode_divisi'),
-          'id_departement'=>Input::get('id_departement')
+    'id_departement'=>Input::get('id_departement')
         ];
         $request = Request::create('api/divisi/'.$id,'PUT',$input);
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
         $messages = $respose->message;
-        return redirect::route('divisi')->with(compact('data'))->withFlashMessage($messages);
+        $statuss = $respose->status;
+        
+        //Return Data
+        
+       if($statuss===false){
+            return redirect()->back()->withInput()->withFlashMessage($messages);
+
+
+        }elseif($statuss===true){
+            return redirect::route('divisi')->with(compact('data'))->withFlashMessage($messages);
+      }
+        
     }
 
     /**
@@ -122,6 +143,7 @@ class Divisi extends Controller
      * @param  int  $id
      * @return Response
      */
+    
     public function destroy(Request $request, $id)
     {
         //
@@ -131,7 +153,5 @@ class Divisi extends Controller
         $messages = $respose->message;
         return redirect::route('divisi')->with(compact('data'))->withFlashMessage($messages);
     }
-    public function hitung(){
-
-    }
+   
 }

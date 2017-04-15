@@ -62,7 +62,7 @@ class DivisiController extends Controller
           if ($validator->fails()){
               return Response::json([
                 'status' =>  false,
-                'message' => null,
+                'message' => 'Maaf Data gagal dimasukkan: Data Divisi telah terdaftar',
                 'data' =>[
                       'request'=> Request::all(),
                       'response'=>$validator-> errors()->all(),
@@ -78,7 +78,7 @@ class DivisiController extends Controller
           if($store->save()){
               return Response::json([
                   'status'=>true,
-                  'message'=>null,
+                  'message'=>'Selamat! Data Divisi Divisi berhasil Disimpan',
                   'data'=>[
                     'request'=>Request::all(),
                     'response'=>[
@@ -87,6 +87,15 @@ class DivisiController extends Controller
                     ]
                 ]);
           }
+        return Response::json([
+            'status'=>false,
+            'message'=>'Maaf ! Data Divisi gagal dimasukkan',
+            'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>'false'
+            ]
+            
+        ]);
     }
 
     /**
@@ -132,20 +141,43 @@ class DivisiController extends Controller
     public function update(Request $request, $id)
     {
         //
+               
         $update = Divisi::find($id);
         $update->nama_divisi = Request::get('nama_divisi');
         $update->kode_divisi = Request::get('kode_divisi');
         $update->id_departement = Request::get('departement');
         if($update->save()){
-              return Response::json([
+            
+//             if(Divisi::where('kode_divisi','=', Request::get('kode_divisi'))->exists()){
+//            
+//                    return Response::json([
+//                    'status'=>false,
+//                    'message'=>'Maaf Data gagal Dimasukkkan : Kode Yang dicantumkan sudah ada',
+//                    'data'=>[
+//                            'request'=>Request::all(),
+//                            'response'=>'false'
+//                    ] 
+//                ]);
+//             }
+             
+            return Response::json([
                     'status'=>true,
-                    'message'=>null,
+                    'message'=>'Data Divisi baru berhasil disimpan',
                     'data' => [
                         'request'=> Request::all(),
                         'response' => Divisi::all(),
                       ]
                 ]);
         }
+        
+        return Response::json([
+           'status'=>false,
+            'message'=>'Maaf Data Divisi gagal Dimasukkkan',
+            'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>'false'
+            ] 
+        ]);
     }
 
     /**
@@ -161,7 +193,7 @@ class DivisiController extends Controller
         $divisi->delete();
         return Response::json([
               'status'=>true,
-              'message'=>'Divisi has been deleted',
+              'message'=>'Data Divisi Berhasil Dihasil Dihapus',
               'data'=>[
                 'request' => Request::all(),
                 'response' => Divisi::all(),

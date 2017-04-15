@@ -13,12 +13,12 @@
             </div>
             <div class="profile-data">
                 <div class="profile-data-name">Bimaproteksi</div>
-                <div class="profile-data-title">Web Developer/Designer</div>
+              
             </div>
             
         </div>
     </li>
-    <li class="xn-title">Navigation</li>
+    <li class="xn-title">Navigasi</li>
 
 
         @yield('navigation')

@@ -13,11 +13,18 @@
 <div class="panel-heading">
 	<h3 class="panel-title">Poin Kaizen</h3>
 </div> 
-
+          @if (Session::has('flash_message'))
+								<div class="alert alert-danger" role="alert">
+                                		<button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span>
+                                		<span class="sr-only">Close</span></button>
+                               			{{ Session::get('flash_message') }}
+    </div>
+                 @endif
+                                    
 
 <div class="panel-body">
 
-<a  href="{{url('/addkaizen')}}">
+<a  href="{{url('/add/kaizen')}}">
 <button class="btn btn-warning" type="button" style="margin:10px 40px 20px 0px;">
 <span class="glyphicon glyphicon-plus-sign"></span>
 <span> Tambah Poin </span>
@@ -35,27 +42,30 @@
 							</tr>
 						</thead>
 						<tbody>
-						
+						@foreach($data as $key=>$val)
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td> {{$val->kegiatan}} </td>
+								<td> {{$val->bukti_keg}} </td>
+								<td> {{$val->jenis}} </td>
 								<td>
 									<div class="btn btn-default btn-rounded btn-sm" >
                                     <span class="fa fa-pencil"></span>
                                     
-                                    	{!! link_to_route('editkaizen','Edit') !!}
+                                    	{!! link_to_route('edit_pkaizen','Edit', $val->id_pkaizen) !!}
  									</div>
 
-                                    <div class="btn btn-danger btn-rounded btn-sm" onclick="delete_row('trow_1');">
-                                    <span class="fa fa-times"></span>
+                                    
 
-                                    	{!! link_to_route('delete_karir','Delete') !!}
- 									
-                                    </div >
+                                    	  {!! Form::open(array(
+																	'route'=>array('delete_pkaizen', $val->id_pkaizen),
+																	'method'=>'DELETE'))!!}
+
+																	{!! Form::submit('Delete',['class'=>'btn btn-danger btn-rounded btn-sm']) !!}
+											{!! Form::close()!!}
+ 								
 								</td>
 							</tr>
-							
+							@endforeach
 						</tbody>
 					</table>
     </div>

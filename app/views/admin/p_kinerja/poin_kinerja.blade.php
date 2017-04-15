@@ -22,7 +22,7 @@
                     </a>                        
             </div>
             <div class="col-md-3">                        
-                    <a href="{{url('/poin')}}" class="tile tile-info tile-valign">
+                    <a href="{{url('/pkinerja')}}" class="tile tile-info tile-valign">
 				    <span class="glyphicon glyphicon-list"></span>
                     <p> Poin Kinerja</p>
                     </a>                        

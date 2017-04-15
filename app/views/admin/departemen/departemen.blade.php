@@ -12,11 +12,14 @@
 				<h3 class="panel-title">Daftar Departement</h3>
 			</div>
 			<div class="panel-body">
-				@if (Session::has('flash_message'))
-				<div class="alert alert-success" role="alert">
-					{{ Session::get('flash_message') }}
-				</div>
-				@endif
+			@if (Session::has('flash_message'))
+								<div class="alert alert-success" role="alert">
+                                		<button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span>
+                                		<span class="sr-only">Close</span></button>
+                               			{{ Session::get('flash_message') }}
+                            	</div>
+						@endif
+
 
 				<a  href="{{url('/adddepartemen')}}">
 					<button class="btn btn-warning" type="button" style="margin:10px 40px 20px 0px;">
@@ -29,8 +32,8 @@
 					<thead>
 						<tr>
 							<th>Nama Departement</th>
-							<th>Kode</th>
-							<th>Nama Divisi</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -38,8 +41,9 @@
 						@foreach($data as $key=>$val)
 						<tr>
 							<td>{{$val->nama_departement}}</td>
-							<td>{{$val->kode_dept_divisi}}</td>
-							<td>{{$val->nama_divisi}}</td>
+                            <td>{{$val->created_at}}</td>
+                            <td>{{$val->updated_at}}</td>
+					
 
 							<td>
 								<div class="btn btn-default btn-rounded btn-sm" >
@@ -51,11 +55,13 @@
 								{!!Form::open(array(
 									'route'=>array('delete_departemen', $val->id_departement),
 									'method'=>'DELETE'))!!}
+                                
 
 									{!!Form::submit('Delete', ['class'=>'btn btn-danger btn-rounded btn-sm'])!!}
 
 									{!!Form::close()!!}
-
+                                
+                                
 								</td>
 							</tr>
 							@endforeach

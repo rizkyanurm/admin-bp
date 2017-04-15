@@ -24,7 +24,7 @@
 				<div class="panel-body">
 				
 				
-					{!! Form::open() !!}
+					{!! Form::open(array('route'=>'store_pkinerja','class'=>'form-horizontal','id'=>'jvalidate','role'=>'form','novalidate'=>'novalidate')) !!}
 					@include ('admin/p_kinerja/poin/_form',['submit_text'=>'Tambah','reset_text'=>'Reset'])
 					{!! Form::close() !!}
 				
@@ -36,4 +36,35 @@
 </div>
 
 
+@endsection
+
+
+@section('script')
+<script type="text/javascript">
+        var jvalidate =$("#jvalidate").validate({
+            ignore:[],
+            rules:{
+                bduaya:{
+                    required:true,
+                    
+                },
+                aspek_poin:{
+                    required:true,
+                   
+                    
+                },
+                nama_pkinerja:{
+                    required:true,
+                },
+                
+                bobot_metrik:{
+                    required:true,
+                    digits:true,
+                    min:0,
+                    max:100,
+                },
+            }
+        });
+
+</script>
 @endsection

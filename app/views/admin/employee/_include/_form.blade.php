@@ -61,11 +61,11 @@
 		</div>
 </div>
 <div class="form-group">
-	{!!Form::label('umur', 'Umur',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
+	{!!Form::label('status_karyawan', 'Status Karyawan',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 		<div class="col-md-6 col-xs-12">
 			<!-- <div class="input-group"> -->
 			<!-- <span class="input-group-addon"><span class="fa fa-info"></span></span> -->
-				{!! Form::input( null, 'umur', null, ['class' => 'form-control']) !!}
+				{!! Form::select( 'status_karyawan', ['Masih bekerja'=>'Masih Bekerja', 'Pensiun'=>'Pensiun'],null, ['class' => 'form-control']) !!}
 			</div>
 		<!-- </div> -->
 </div>

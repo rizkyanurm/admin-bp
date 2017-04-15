@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Response, Route, View, Input;
 
 
+
+
 class Employe extends Controller
 {
     /**
@@ -52,7 +54,7 @@ class Employe extends Controller
             'jenis_kelamin' => Input::get('jenis_kelamin'),
             'agama' => Input::get('agama'),
             'alamat' => Input::get('alamat'),
-            'umur'=>Input::get('umur'),
+            'status_karyawan'=>Input::get('status_karyawan'),
             'no_telp' => Input::get('no_telp'),
 
         ];
@@ -120,7 +122,7 @@ class Employe extends Controller
             'jenis_kelamin' => Input::get('jenis_kelamin'),
             'agama' => Input::get('agama'),
             'alamat' => Input::get('alamat'),
-            'umur'=>Input::get('umur'),
+            'status_karyawan'=>Input::get('status_karyawan'),
             'no_telp' => Input::get('no_telp'),
         ];
 
@@ -130,8 +132,6 @@ class Employe extends Controller
         $data = $respose->data->response;
         $messages=$respose->message;
         $statuss = $respose->status;
-
-
 
 
         if($statuss===false){
@@ -155,7 +155,9 @@ class Employe extends Controller
         $request = Request::create('api/employe/'.$id,'delete');
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
-        $messages=$respose->message;
+        $messages = $respose->message;
         return redirect::route('employee')->with(compact('data'))->withFlashMessage($messages);
     }
+    
+  
 }

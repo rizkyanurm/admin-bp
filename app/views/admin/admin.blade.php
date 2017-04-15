@@ -15,13 +15,13 @@
 	<li class="xn-openable">
         <a href="{{url('/employee')}}">
         <span class="fa fa-group"></span>
-        <span class="xn-text"> Employee </span>
+        <span class="xn-text"> Karyawan </span>
         </a> 
         <ul>
         	<li>
         		<a href="{{url('/employee')}}">
     			<span class="glyphicon glyphicon-user"></span>
-        		Employee
+        		Karyawan
         		</a>
         	</li>
         	<li class="xn-openable">
@@ -31,25 +31,33 @@
         		</a>
         		<ul>
         			<li>
-        			<a href="{{url('')}}">
+        			<a href="{{url('/jamkerja')}}">
     					<span class="fa fa-clipboard"></span>
         				Jam kerja
         			</a>
         			</li>
         			<li>
-        				<a href="{{url('')}}">
+        				<a href="{{url('/dt_jamkerja')}}">
         					<span class="fa fa-clipboard"></span>
         					Data Jam kerja	
         				</a>
         			</li>
         		</ul>
         	</li>
+            <li>
+        		<a href="{{url('/dt/employe')}}">
+    			<span class="glyphicon glyphicon-user"></span>
+        		Log Data Karyawan
+        		</a>
+        	</li>
+<!--
         	<li>
         		<a href="{{url('/gaji')}}">
         		<span class="glyphicon glyphicon-envelope"></span>
         		Gaji
         		</a>
         	</li>
+-->
         	<li>
         		<a href="{{url('/absensi')}}">
         		<span class="glyphicon glyphicon-calendar"></span>
@@ -99,31 +107,31 @@
 			</ul>
 	</li>  
 	<li class="xn-openable">
-		<a href="{{url('/poinkinerja')}}">
+		<a href="{{url('/pkinerja/index')}}">
     <span class="fa fa-ellipsis-v"></span>
 			<span class="xn-text">Poin Penilaian</span>
 		</a>
 		<ul>
 		<li class="xn-openable">
-				<a href="{{url('/poinkinerja')}}">
+				<a href="{{url('/pkinerja')}}">
     			<span class="fa fa-suitcase"></span>
 					Kinerja
 				</a>
 				<ul>
 				<li>
-					<a href="{{url('/poinkinerja')}}">
+					<a href="{{url('/pkinerja')}}">
     				<span class="fa fa-suitcase"></span>
 					Poin Kinerja
 				</a>
 				</li>
 					<li>
-					<a href="{{url('/bobotpoin')}}">
+					<a href="{{url('/budaya')}}">
     				<span class="glyphicon glyphicon-tasks"></span>
-						Pengaturan Bobot
+						Pengaturan Budaya
 					</a>
 					</li>
 					<li>
-					<a href="{{url('/dtpkinerja')}}">
+					<a href="{{url('/dt/pkinerja')}}">
     				<span class="fa fa-suitcase"></span>
 					Data Poin Kinerja
 				</a>
@@ -131,19 +139,19 @@
 				</ul>
 			</li>
 			<li class="xn-openable">
-				<a href="{{url('/kepemimpinan')}}">
+				<a href="{{url('/poinpimpin')}}">
 					<span class="glyphicon glyphicon-globe"></span>
 					Kepemimpinan
 				</a>
 				<ul>
 					<li>
-						<a href="{{url('/kepemimpinan')}}">
+						<a href="{{url('/poinpimpin')}}">
 							<span class="glyphicon glyphicon-globe"></span>
 							Poin Kepemimpinan
 						</a>
 					</li>
 					<li>
-						<a href="{{url('/dtppimpin')}}">
+						<a href="{{url('/dt/pimpin')}}">
 							<span class="glyphicon glyphicon-globe"></span>
 							Data Poin Kepemimpinan
 						</a>
@@ -164,7 +172,7 @@
 						</a>
 				</li>
 				<li>
-					<a href="{{url('/dtpkaizen')}}">
+					<a href="{{url('/dt/kaizen')}}">
     				<span class="glyphicon glyphicon-tree-deciduous"></span>
 					Data Poin Kaizen
 					</a>
@@ -174,17 +182,42 @@
 			</li>
 		</ul>
 	</li>
-	<li class="xb-openable">
+	<li class="xn-openable">
 		<a href="{{url('/kpi')}}">
 			<span class="fa fa-check"></span>
-			<span class="xn-text">Project/KPI</span>
+			<span class="xn-text">KPI</span>
 		</a>
+        <ul>
+            <li>
+            <a href="{{url('/kpi')}}">
+                <span class="fa fa-check"></span>
+                KPI
+                
+            </a>
+            
+            </li>
+            <li>
+            <a href="{{url('/dtkpi')}}">
+                <span class="fa fa-check"></span>
+                Data KPI
+            </a>
+            </li>
+        
+        
+        </ul>
+   
+    
 	</li>
+<!--
+	<li >
+		<a href="{{url('/auth/register')}}">
+			<span class="fa fa-check"></span>
+			<span class="xn-text">Tambah Admin</span>
+		</a>
+</li>
+-->
 			
 	
 	 
 @endsection
 
-@section('content')
-	@include('admin_content')
-@endsection

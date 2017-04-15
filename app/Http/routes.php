@@ -22,7 +22,36 @@ Route::group(['prefix' => 'api'/*,'middleware'=>'simpleauth'*/], function()
     Route::resource('karir', 'Api\KarirController');
     Route::resource('jabatan','Api\JabatanController');
     Route::resource('absensi','Api\AbsensiController');
+    Route::resource('jamkerja','Api\JamkerjaController');
+    Route::resource('dtjkerja', 'Api\DtjkerjaController');
+    Route::resource('kpi','Api\KpiController');
+    Route::resource('dtkpi','Api\DtkpiController');
+    Route::resource('pkaizen','Api\PkaizenController');
+    Route::resource('ppimpin','Api\PpimpinController');
+    Route::resource('dtpkaizen','Api\DtkaizenController');
+    Route::Resource('dtppimpin','Api\DtpimpinController');
+    Route::resource('budaya','Api\BudayaController');
+    Route::resource('pkinerja','Api\PkinerjaController');
+    Route::resource('dtpkinerja','Api\DtpkinerjaController');
+    Route::resource('dtemploye','Api\DtemployeController');
+    
 });
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login',['as'=>'login','uses'=> 'Auth\AuthController@postLogin']);
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register',['as'=>'register','uses'=>  'Auth\AuthController@postRegister']);
+
+
+Route::controllers([
+   
+    'password'=>'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
+]);
 
 //model
 // Route::model('employee','Employe');
@@ -30,9 +59,12 @@ Route::group(['prefix' => 'api'/*,'middleware'=>'simpleauth'*/], function()
 // html base
 Route::get('/', function () {return view('layouts/template');});
 Route::get('version', function () {return view('version');});
-Route::get('login', function () {return view('auth/login');});
-Route::resource('employe','Employe');
+//Route::get('login', function () {return view('auth/login');});
+
 Route::resource('departement','Departement');
+Route::resource('divisi', 'Divisi');
+Route::resource('karir', 'Karir');
+Route::resource('jamkerja','Jamkerja');
 
 ///////////////////////// Employee//////////////////////////////
 Route::get('/homeemployee',['as'=>'HomeEmployee', function(){
@@ -77,123 +109,155 @@ Route::get('/ceoEvaluation', function(){
 
 //{url home admin}
 
- Route::get('/homeadmin',['as'=>'admin', function(){
-        return view('admin/admin');
- }]);
+ Route::get('/homeadmin',['as'=>'admin', 'uses'=>'Dashboard@index', 'middleware'=>'auth']);
 
 
 //{url admin/employee}
-Route::get('/employee', ['as'=>'employee', 'uses'=> 'Employe@index']);
+Route::get('/employee',['middleware'=>'auth','as'=>'employee', 'uses'=> 'Employe@index']);
 
-Route::get('/addemployee', ['as'=>'addemployee','uses'=>'Employe@create']);
+Route::get('/addemployee', ['as'=>'addemployee','uses'=>'Employe@create', 'middleware'=>'auth']);
 
-Route::post('/addemployee', ['as'=>'employee_store','uses'=>'Employe@store']);
+Route::post('/addemployee', ['as'=>'employee_store','uses'=>'Employe@store', 'middleware'=>'auth']);
 
-Route::get('/editemployee/{id}',['as'=>'editemployee', 'uses'=>'Api\EmployeController@edit']);
+Route::get('/editemployee/{id}',['as'=>'editemployee', 'uses'=>'Api\EmployeController@edit', 'middleware'=>'auth']);
 
-Route::post('/editemployee/{id}',['as'=>'updateemployee','uses'=>'Employe@update']);
+Route::post('/editemployee/{id}',['as'=>'updateemployee','uses'=>'Employe@update','middleware'=>'auth']);
 
-Route::delete('/delete_employe/{id}',['as'=>'delete_employee','uses'=>'Employe@destroy']);
+Route::delete('/delete_employe/{id}',['as'=>'delete_employee','uses'=>'Employe@destroy', 'middleware'=>'auth']);
 
-Route::get('/detail/{id}',['as'=>'show_employee','uses'=>'Api\EmployeController@show']);
+Route::get('/detail/{id}',['as'=>'show_employee','uses'=>'Api\EmployeController@show', 'middleware'=>'auth']);
 
 
+
+//{url admin dt employe}
+
+Route::get('/dt/employe',['as'=>'dt_employe','uses'=>'Dt_employe@index', 'middleware'=>'auth']);
+
+Route::get('/add/dt/employe',['as'=>'add_dtemploye', 'uses'=>'Dt_employe@create', 'middleware'=>'auth']);
+
+Route::post('/add/dt/employe',['as'=>'store_dtemploye', 'uses'=>'Dt_employe@store', 'middleware'=>'auth']);
+
+Route::delete('/delete/dt/employe/{id}',['as'=>'delete_dtemploye','uses'=>'Dt_employe@destroy', 'middleware'=>'auth']);
 
 //{url admin/departemen}
 
-Route::get('/departemen', ['as'=>'departemen', 'uses'=>'Departement@index']);
+Route::get('/departemen', ['as'=>'departemen', 'uses'=>'Departement@index', 'middleware'=>'auth']);
 
-Route::get('/adddepartemen',['as'=>'adddepartemen', 'uses'=>'Departement@create']);
+Route::get('/adddepartemen',['as'=>'adddepartemen', 'uses'=>'Departement@create', 'middleware'=>'auth']);
 
-Route::post('/addepartemen',['as'=>'departemen_store','uses'=>'Departement@store']);
+Route::post('/addepartemen',['as'=>'departemen_store','uses'=>'Departement@store', 'middleware'=>'auth']);
 
-Route::get('/edit/{id}',['as'=>'editdepartemen','uses'=>'Api\DepartementController@edit']);
+Route::get('/edit/{id}',['as'=>'editdepartemen','uses'=>'Api\DepartementController@edit', 'middleware'=>'auth']);
 
-Route::post('/edit/{id}',['as'=>'updatedepartemen','uses'=>'Departement@update']);
+Route::post('/edit/{id}',['as'=>'updatedepartemen','uses'=>'Departement@update', 'middleware'=>'auth']);
 
-Route::delete('/delete/{id}',['as'=>'delete_departemen','uses'=>'Departement@destroy']);
+Route::get('/detail/departemen/{id}',['as'=>'detail_departemen','uses'=>'Departement@show', 'middleware'=>'auth']);
+
+Route::delete('/delete/departemen/{id}',['as'=>'delete_departemen','uses'=>'Departement@destroy', 'middleware'=>'auth']);
 
 //{url admin/divisi}
 
-Route::get('/divisi', ['as'=>'divisi', 'uses'=> 'Divisi@index']);
+Route::get('/divisi', ['as'=>'divisi', 'uses'=> 'Divisi@index', 'middleware' =>'auth']);
 
-Route::get('/adddivisi',['as'=>'adddivisi', 'uses' =>'Divisi@create']);
+Route::get('/adddivisi',['as'=>'adddivisi', 'uses' =>'Divisi@create', 'middleware'=>'auth']);
 
-Route::post('/adddivisi',['as'=>'divisi_store', 'uses'=>'Divisi@store']);
+Route::post('/adddivisi',['as'=>'divisi_store', 'uses'=>'Divisi@store', 'middleware'=>'auth']);
 
-Route::get('/editdivisi/{id}', ['as'=>'editdivisi','uses' =>'Api\DivisiController@edit']);
+Route::get('/editdivisi/{id}', ['as'=>'editdivisi','uses' =>'Api\DivisiController@edit', 'middleware'=>'auth']);
 
-Route::post('/updatedivisi/{id}',['as'=>'updatedivisi', 'uses'=>'Divisi@update']);
+Route::post('/updatedivisi/{id}',['as'=>'updatedivisi', 'uses'=>'Divisi@update', 'middleware'=>'auth']);
 
-Route::delete('/delete/{id}',['as'=>'delete_divisi', 'uses'=>'Divisi@destroy']);
+Route::delete('/delete/divisi/{id}',['as'=>'delete_divisi', 'uses'=>'Divisi@destroy', 'middleware'=>'auth']);
 
 //{url admin/karir}
 
- Route::get('/karir', ['as'=>'karir','uses'=>'Karir@index']);
+ Route::get('/karir', ['as'=>'karir','uses'=>'Karir@index', 'middleware'=>'auth']);
 
- Route::get('/addkarir',['as'=>'addkarir', 'uses'=>'Karir@create']);
+ Route::get('/addkarir',['as'=>'addkarir', 'uses'=>'Karir@create', 'middleware'=>'auth']);
 
- Route::post('/addkarir',['as'=>'store_karir','uses'=>'Karir@store']);
+ Route::post('/addkarir',['as'=>'store_karir','uses'=>'Karir@store', 'middleware'=>'auth']);
 
- Route::get('/editkarir/{id}',['as'=>'editkarir', 'uses'=>'Api\KarirController@edit']);
+ Route::get('/editkarir/{id}',['as'=>'editkarir', 'uses'=>'Api\KarirController@edit', 'middleware'=>'auth']);
 
- Route::post('/editkarir/{id}',['as'=>'updatekarir', 'uses'=>'Karir@update']);
+ Route::post('/editkarir/{id}',['as'=>'updatekarir', 'uses'=>'Karir@update', 'middleware'=>'auth']);
 
- Route::delete('/delete/{id}',['as'=>'delete_karir', 'uses'=> 'Karir@destroy']);
+ Route::delete('/delete/karir/{id}',['as'=>'delete_karir', 'uses'=> 'Karir@destroy', 'middleware'=>'auth']);
+
+
+
+//url{url admin/dt_jkerja}
+Route::get('/dt_jamkerja',['as'=>'dt_jkerja', 'uses'=>'Dtjkerja@index', 'middleware'=>'auth']);
+
+Route::get('/add/dtjkerja', ['as'=>'add_dtjkerja', 'uses'=>'Dtjkerja@create', 'middleware'=>'auth']);
+
+Route::post('/add/dtjkerja',['as'=>'store_dtjkerja','uses'=>'Dtjkerja@store', 'middleware'=>'auth']);
+
+Route::get('/edit/dtjkerja/{id}',['as'=>'edit_dtjkerja', 'uses'=>'Api\DtjkerjaController@edit', 'middleware'=>'auth']);
+
+Route::post('/edit/dtjkerja/{id}',['as'=>'update_dtjkerja', 'uses'=>'Dtjkerja@update', 'middleware'=>'auth']);
+
+Route::delete('/delete/jkerja/{id}',['as'=>'delete_dtjkerja', 'uses'=> 'Dtjkerja@destroy', 'middleware'=>'auth']);
+
 
 
  //{url admin/jabatan}
 
- Route::get('/jab',['as'=>'jabatan','uses' => 'Jabatan@index']);
+ Route::get('/jab',['as'=>'jabatan','uses' => 'Jabatan@index', 'middleware'=>'auth']);
 
- Route::get('/addjabatan', ['as'=>'addjabatan','uses'=>'Jabatan@create']);
+ Route::get('/addjabatan', ['as'=>'addjabatan','uses'=>'Jabatan@create', 'middleware'=>'auth']);
 
- Route::post('/addjabatan', ['as'=>'jabatan_store', 'uses'=>'Jabatan@store']);
+ Route::post('/addjabatan', ['as'=>'jabatan_store', 'uses'=>'Jabatan@store', 'middleware'=>'auth']);
 
- Route::get('/editjabatan/{id}',['as'=>'editjabatan', 'uses'=>'Api\JabatanController@edit']);
+ Route::get('/editjabatan/{id}',['as'=>'editjabatan', 'uses'=>'Api\JabatanController@edit', 'middleware'=>'auth']);
 
- Route::post('editjabatan/{id}',['as'=>'updatejabatan', 'uses'=>'Jabatan@update']);
+ Route::post('editjabatan/{id}',['as'=>'updatejabatan', 'uses'=>'Jabatan@update', 'middleware'=>'auth']);
 
- Route::delete('/deletejabatan/{id}',['as'=>'delete_jabatan','uses'=>'Jabatan@destroy']);
+ Route::delete('/deletejabatan/{id}',['as'=>'delete_jabatan','uses'=>'Jabatan@destroy', 'middleware'=>'auth']);
 
 
 //{url:poin kepemimpinan}
 
- Route::get('/kepemimpinan',['as'=>'kepemimpinan', function(){
-    return view('admin/p_kepemimpinan/kepemimpinan');
- }]);
+ Route::get('/poinpimpin',['as'=>'ppimpin', 'uses'=>'Ppimpin@index', 'middleware'=>'auth']);
 
- Route::get('/addkepemimpinan',['as'=>'addpoinpimpin', function(){
-    return view('admin/p_kepemimpinan/create');
- }]);
+ Route::get('/add/ppimpin',['as'=>'add_ppimpin','uses'=>'Ppimpin@create', 'middleware'=>'auth']);
 
- Route::get('/editkepemimpinan',['as'=>'editpoinpimpin', function(){
-    return view('admin/p_kepemimpinan/edit');
- }]);
+Route::post('/add/ppimpin',['as'=>'store_ppimpin', 'uses'=>'Ppimpin@store', 'middleware'=>'auth']);
 
- Route::get('/detailpoinpimpin',['as'=>'detailpoin',function(){
-    return view('admin/p_kepemimpinan/detail');
- }]);
+ Route::get('/edit/ppimpin/{id}',['as'=>'edit_ppimpin','uses'=>'Api\PpimpinController@edit', 'middleware'=>'auth']);
 
- Route::get('/addpertanyaanp',['as'=>'addpertanyaanp', function(){
-    return view('admin/p_kepemimpinan/create_p');
- }]);
+ Route::post('/edit/ppimpin/{id}',['as'=>'update_ppimpin','uses'=>'Ppimpin@update', 'middleware'=>'auth']);
 
-Route::get('/dtppimpin',['as'=>'dtpoinpimpin', function(){
-    return view('admin/p_kepemimpinan/dt_poinpimpin');
-}]);
+Route::delete('/delete/ppimpin/{id}',['as'=>'delete_ppimpin','uses'=>'Ppimpin@destroy', 'middleware'=>'auth']);
+
+
 
  ///////////////////{url:poin kinerja}///////////////////////
 
- Route::get('/poinkinerja',['as'=>'poinkinerja', function(){
-    return view('admin/p_kinerja/poin_kinerja');
-}]);
+Route::get('/pkinerja/index',['as'=>'pkinerja_','uses'=>'Pkinerja@tampil', 'middleware'=>'auth']);
+
+Route::get('/pkinerja',['as'=>'pkinerja','uses'=>'Pkinerja@index', 'middleware'=>'auth']);
+
+Route::get('/add/pkinerja',['as'=>'add_pkinerja', 'uses'=>'Pkinerja@create', 'middleware'=>'auth']);
+
+Route::post('/add/pkinerja',['as'=>'store_pkinerja', 'uses'=>'Pkinerja@store','middleware'=>'auth']);
+
+Route::get('/edit/pkinerja/{id}',['as'=>'edit_pkinerja', 'uses'=>'Api\PkinerjaController@edit', 'middleware'=>'auth']);
+
+Route::post('/edit/pkinerja/{id}',['as'=>'update_pkinerja', 'uses'=>'Pkinerja@update', 'middleware'=>'auth']);
+
+Route::delete('/delete/pkinerja/{id}',['as'=>'delete_pkinerja','uses'=>'Pkinerja@destroy', 'middleware'=>'auth']);
+
+
 
  //dt_poinkinerja
 
- Route::get('/dtpkinerja',['as'=>'dtpkinerja', function(){
-    return view('admin/p_kinerja/dt_poinkinerja');
- }]);
+Route::get('/dt/pkinerja',['as'=>'dt_pkinerja','uses'=>'Dt_pkinerja@index', 'middleware'=>'auth']);
+
+Route::get('/add/dt/pkinerja',['as'=>'add_dtpkinerja', 'uses'=>'Dt_pkinerja@create', 'middleware'=>'auth']);
+
+Route::post('/add/dt/pkinerja',['as'=>'store_dtpkinerja', 'uses'=>'Dt_pkinerja@store', 'middleware'=>'auth']);
+
+Route::delete('/delete/dt/pkinerja/{id}',['as'=>'delete_dtpkinerja','uses'=>'Dt_pkinerja@destroy', 'middleware'=>'auth']);
 
  // Bobot poin
 
@@ -203,17 +267,18 @@ Route::get('/dtppimpin',['as'=>'dtpoinpimpin', function(){
 
  //Budaya
 
-Route::get('/budaya',['as'=>'budaya',function(){
-    return view('admin/p_kinerja/budaya/budaya');
-}]);
+Route::get('/budaya',['as'=>'budaya','uses'=>'Budaya@index', 'middleware'=>'auth']);
 
-Route::get('/addbudaya',['as'=>'addbudaya', function(){
-    return view('admin/p_kinerja/budaya/create');
-}]);
+Route::get('/add/budaya',['as'=>'add_budaya', 'uses'=>'Budaya@create', 'middleware'=>'auth']);
 
-Route::get('/editbudaya',['as'=>'editbudaya', function(){
-    return view('admin/p_kinerja/budaya/edit');
-}]);
+Route::post('/add/budaya',['as'=>'store_budaya', 'uses'=>'Budaya@store', 'middleware'=>'auth']);
+
+Route::get('/edit/budaya/{id}',['as'=>'edit_budaya', 'uses'=>'Api\BudayaController@edit', 'middleware'=>'auth']);
+
+Route::post('/edit/budaya/{id}',['as'=>'update_budaya', 'uses'=>'Budaya@update', 'middleware'=>'auth']);
+
+Route::delete('/delete/budaya/{id}',['as'=>'delete_budaya','uses'=>'Budaya@destroy','middleware'=>'auth']);
+
 
 //aspek
 Route::get('/aspek',['as'=>'aspek', function(){
@@ -228,84 +293,123 @@ Route::get('/editaspek',['as'=>'editaspek', function(){
     return view('admin/p_kinerja/aspek/edit');
 }]);
 
-//Poin
-Route::get('/poin',['as'=>'poin', function(){
-    return view('admin/p_kinerja/poin/poin');
-}]);
 
-Route::get('/addpoin', ['as'=>'addpoin', function(){
-    return view('admin/p_kinerja/poin/create');
-}]);
-
-Route::get('/editpoin',['as'=>'editpoin', function(){
-    return view('admin/p_kinerja/poin/edit');
-}]);
 
 ///////////////////////////{url:/kaizen}///////////////////////
 
-Route::get('/kaizen', ['as'=>'kaizen', function(){
-    return view('admin/p_kaizen/kaizen');
-}]);
+Route::get('/kaizen', ['as'=>'kaizen', 'uses'=>'Pkaizen@index', 'middleware'=>'auth']);
 
-Route::get('/addkaizen',['as'=>'addkaizen', function(){
-    return view('admin.p_kaizen/create');
-}]);
+Route::get('/add/kaizen',['as'=>'addkaizen', 'uses'=>'Pkaizen@create', 'middleware'=>'auth']);
 
-Route::get('/editkaizen',['as'=>'editkaizen', function(){
-    return view('admin/p_kaizen/edit');
-}]);
+Route::post('/add/kaizen',['as'=>'store_pkaizen','uses'=>'Pkaizen@store', 'middleware'=>'auth']);
 
-Route::get('/dtpkaizen',['as'=>'dtpkaizen', function(){
-    return view('admin/p_kaizen/dtpkaizen');
-}]);
+Route::get('/edit/kaizen/{id}',['as'=>'edit_pkaizen', 'uses'=>'Api\PkaizenController@edit', 'middleware'=>'auth']);
 
-//////////////////////////////////////////////////////
-Route::get('/kpi',['as'=>'kpi_project', function(){
-    return view('admin/kpi_project/kpi_project');
-}]);
+Route::post('/edit/kaizen/{id}',['as'=>'update_pkaizen','uses'=>'Pkaizen@update','middleware'=>'auth']);
 
-Route::get('/addkpi',['as'=>'addkpi', function(){
-    return view('admin/kpi_project/create');
-}]);
+Route::delete('/delete/kaizen/{id}',['as'=>'delete_pkaizen','uses'=>'Pkaizen@destroy','middleware'=>'auth']);
 
-Route::get('/editkpi',['as'=>'editkpi', function(){
-    return view('admin/kpi_project/edit');
-}]);
+//Route::get('/dtpkaizen',['as'=>'dtpkaizen']);
 
-////////////////////////////////////////
 
-Route::get('/jamkerja', ['as'=>'jamkerja', function(){
-        return view('admin/jkerja/jkerja');
-}]);
 
+//////////////////////DT-KAIZEN///////////////////////////
+route::get('/dt/kaizen',['as'=>'dt_kaizen', 'uses'=>'Dtkaizen@index', 'middleware'=>'auth']);
+
+route::get('/add/dt/kaizen',['as'=>'add_dtkaizen', 'uses'=>'Dtkaizen@create', 'middleware'=>'auth']);
+
+route::post('/add/dt/kaizen',['as'=>'store_dtkaizen','uses'=>'Dtkaizen@store', 'middleware'=>'auth']);
+
+route::get('/edit/dt/kaizen/{id}',['as'=>'edit_dtkaizen','uses'=>'Api\DtkaizenController@edit', 'middleware'=>'auth']);
+
+route::post('/edit/dt/kaizen/{id}',['as'=>'update_dtkaizen', 'uses'=>'Dtkaizen@update', 'middleware'=>'auth']);
+
+route::delete('/delete/dt/kaizen/{id}',['as'=>'delete_dtkaizen','uses'=>'Dtkaizen@destroy', 'middleware'=>'auth']);
+
+
+
+//////////////////////DT-Pimpin///////////////////////////
+route::get('/dt/pimpin',['as'=>'dt_pimpin', 'uses'=>'Dtpimpin@index', 'middleware'=>'auth']);
+
+route::get('/add/dt/pimpin',['as'=>'add_dtpimpin', 'uses'=>'Dtpimpin@create', 'middleware'=>'auth']);
+
+route::post('/add/dt/pimpin',['as'=>'store_dtpimpin','uses'=>'Dtpimpin@store', 'middleware'=>'auth']);
+
+route::get('/edit/dt/pimpin/{id}',['as'=>'edit_dtpimpin','uses'=>'Api\DtpimpinController@edit', 'middleware'=>'auth']);
+
+route::post('/edit/dt/pimpin/{id}',['as'=>'update_dtpimpin', 'uses'=>'Dtpimpin@update', 'middleware'=>'auth']);
+
+route::delete('/delete/dt/pimpin/{id}',['as'=>'delete_dtpimpin','uses'=>'Dtpimpin@destroy', 'middleware'=>'auth']);
+
+////////////////////KPI//////////////////////////////////
+Route::get('/kpi',['as'=>'kpi', 'uses'=>'Kpi@index', 'middleware'=>'auth']);
+
+Route::get('/add/kpi',['as'=>'addkpi', 'uses'=>'Kpi@create', 'middleware'=>'auth']);
+
+Route::post('/add/kpi',['as'=>'store_kpi','uses'=>'Kpi@store', 'middleware'=>'auth']);
+
+Route::get('/edit/kpi/{id}',['as'=>'editkpi', 'uses'=>'Api\KpiController@edit', 'middleware'=>'auth']);
+
+Route::post('/edit/kpi/{id}',['as'=>'update_kpi','uses'=>'Kpi@update', 'middleware'=>'auth']);
+
+Route::delete('/delete/{id}',['as'=>'delete_kpi', 'uses' =>'Kpi@destroy', 'middleware'=>'auth']);
+
+
+
+/////////////////DtKpi///////////////////////////////////
+Route::get('/dtkpi',['as'=>'dtkpi', 'uses'=>'Dt_kpi@index', 'middleware'=>'auth']);
+
+Route::get('/add/dtkpi',['as'=>'add_dtkpi', 'uses'=>'Dt_kpi@create', 'middleware'=>'auth']);
+
+Route::post('/add/dtkpi',['as'=>'store_dtkpi','uses'=>'Dt_kpi@store', 'middleware'=>'auth']);
+
+Route::get('/edit/dtkpi/{id}',['as'=>'edit_dtkpi', 'uses'=>'Api\DtkpiController@edit', 'middleware'=>'auth']);
+
+Route::post('/edit/dtkpi/{id}',['as'=>'update_dtkpi','uses'=>'Dt_kpi@update', 'middleware'=>'auth']);
+
+Route::delete('/delete/{id}',['as'=>'delete_dtkpi', 'uses' =>'Dt_kpi@destroy', 'middleware'=>'auth']);
+
+//////////////////Jam Kerja//////////////////////////////
+
+Route::get('/jamkerja', ['as'=>'jamkerja', 'uses'=>'Jamkerja@index', 'middleware'=>'auth']);
+
+Route::get('/add/jamkerja',['as'=>'addjamkerja','uses'=>'Jamkerja@create', 'middleware'=>'auth']);
+
+Route::post('/add/jamkerja',['as'=>'jamkerja_store', 'uses'=>'Jamkerja@store', 'middleware'=>'auth']);
+
+Route::get('/edit/jamkerja/{id}',['as'=>'editjamkerja', 'uses'=>'Api\JamkerjaController@edit', 'middleware'=>'auth']);
+
+Route::post('/edit/jamkerja/{id}',['as'=>'update_jamkerja', 'uses'=>'Jamkerja@update', 'middleware'=>'auth']);
+
+Route::delete('/delete/jamkerja/{id}', ['as'=>'delete_jamkerja', 'uses'=>'Jamkerja@destroy', 'middleware'=>'auth']);
 
 
 //////////////////absensi////////////////////
-Route::get('/absensi',['as'=>'absensi','uses'=>'Absensi@index']);
+Route::get('/absensi',['as'=>'absensi','uses'=>'Absensi@index', 'middleware'=>'auth']);
 
-Route::get('/editabsensi/{id}',['as'=>'editabsensi', 'uses'=>'Api\AbsensiController@edit']);
+Route::get('/editabsensi/{id}',['as'=>'editabsensi', 'uses'=>'Api\AbsensiController@edit', 'middleware'=>'auth']);
 
-Route::post('editabsensi/{id}',['as'=>'updateabsensi', 'uses'=>'Absensi@update']);
+Route::post('editabsensi/{id}',['as'=>'updateabsensi', 'uses'=>'Absensi@update', 'middleware'=>'auth']);
 
-Route::get('/addabsensi',['as'=>'addabsensi','uses'=>'Absensi@create']);
+Route::get('/addabsensi',['as'=>'addabsensi','uses'=>'Absensi@create', 'middleware'=>'auth']);
 
-Route::post('/addabsensi',['as'=>'absensi_store','uses'=>'Absensi@store']);
+Route::post('/addabsensi',['as'=>'absensi_store','uses'=>'Absensi@store', 'middleware'=>'auth']);
 
-Route::delete('/deleteabsensi/{id}',['as'=>'delete_absensi', 'uses'=>'Absensi@destroy']);
+Route::delete('/deleteabsensi/{id}',['as'=>'delete_absensi', 'uses'=>'Absensi@destroy', 'middleware'=>'auth']);
 
 
 //////////////// amanah/////////////////////////////
-Route::get('/amanah',['as'=>'amanah','uses'=>'Amanah@index']);
+Route::get('/amanah',['as'=>'amanah','uses'=>'Amanah@index', 'middleware'=>'auth']);
 
-Route::get('/editamanah/{id}',['as'=>'editamanah', 'uses'=>'Api\AmanahController@edit']);
+Route::get('/editamanah/{id}',['as'=>'editamanah', 'uses'=>'Api\AmanahController@edit', 'middleware'=>'auth']);
 
-Route::post('editamanah/{id}',['as'=>'updateamanah', 'uses'=>'Amanah@update']);
+Route::post('editamanah/{id}',['as'=>'updateamanah', 'uses'=>'Amanah@update', 'middleware'=>'auth']);
 
-Route::get('/addamanah',['as'=>'addamanah','uses'=>'Amanah@create']);
+Route::get('/addamanah',['as'=>'addamanah','uses'=>'Amanah@create', 'middleware'=>'auth']);
 
-Route::post('/addamanah',['as'=>'amanah_store','uses'=>'Amanah@store']);
+Route::post('/addamanah',['as'=>'amanah_store','uses'=>'Amanah@store', 'middleware'=>'auth']);
 
-Route::delete('/deleteamanah/{id}',['as'=>'delete_amanah', 'uses'=>'Amanah@destroy']);
+Route::delete('/deleteamanah/{id}',['as'=>'delete_amanah', 'uses'=>'Amanah@destroy', 'middleware'=>'auth']);
 
 //Gaji
 

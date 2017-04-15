@@ -149,8 +149,6 @@ public function update(Request $request, $id)
     }elseif($statuss===true){
           return redirect::route('absensi')->with(compact('data'))->withFlashMessage($messages);
       }
-
-
 }
 
 /**

@@ -56,7 +56,7 @@
 	{!!Form::label('jammasuk_shift1', 'Masuk Shift 1 ',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-3 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
-			{!!Form::input(null, 'jammasuk_shift1',null,['class' => 'form-control timepicker', 'type'=>'text']) !!}
+			{!!Form::input(null, 'jammasuk_shift1',null,['class' => 'form-control timepicker24', 'type'=>'text']) !!}
           
 			<span class="help-block"></span>
 		</div>
@@ -66,8 +66,8 @@
 <div class="form-group">
 	{!!Form::label('jamkeluar_shift1', 'Keluar Shift 1 ',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-3 col-xs-12">
-		<div class="input-group bootstrap-timepicker">
-			{!!Form::input(null, 'jamkeluar_shift1',null,['class' => 'form-control timepicker', 'type'=>'text']) !!}
+		<div class="input-group bootstrap-timepicker24">
+			{!!Form::input(null, 'jamkeluar_shift1',null,['class' => 'form-control timepicker24', 'type'=>'text']) !!}
 			<span class="help-block"> </span>
 		</div>
 	</div>
@@ -78,8 +78,8 @@
 <div class="form-group">
 	{!!Form::label('jammasuk_shift2', 'Masuk Shift 2 ',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-4 col-xs-12">
-		<div class="input-group bootstrap-timepicker">
-			{!!Form::input(null, 'jammasuk_shift2',null,['class' => 'form-control timepicker']) !!}
+		<div class="input-group bootstrap-timepicker24">
+			{!!Form::input(null, 'jammasuk_shift2',null,['class' => 'form-control timepicker24']) !!}
 			<span class="help-block"> </span>
 		</div>
 	</div>
@@ -89,7 +89,7 @@
 	{!!Form::label('jamkeluar_shift2', 'Keluar Shift 2 ',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-4 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
-			{!!Form::input(null, 'jamkeluar_shift2',null,['class' => 'form-control timepicker']) !!}
+			{!!Form::input(null, 'jamkeluar_shift2',null,['class' => 'form-control timepicker24']) !!}
 			<span class="help-block"> </span>
 		</div>
 	</div>
@@ -101,7 +101,7 @@
 	{!!Form::label('jamasuk_lembur', 'Masuk Lembur ',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-4 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
-			{!!Form::input(null, 'jamasuk_lembur',null,['class' => 'form-control timepicker']) !!}
+			{!!Form::input(null, 'jamasuk_lembur',null,['class' => 'form-control timepicker24']) !!}
 			<span class="help-block"> </span>
 		</div>
 	</div>
@@ -111,7 +111,7 @@
 	{!!Form::label('jamkeluar_lembur', 'Keluar Lembur',  ['class'=>'col-md-3 col-xs-12 control-label'])!!}
 	<div class="col-md-4 col-xs-12">
 		<div class="input-group bootstrap-timepicker">
-			{!!Form::input(null, 'jamkeluar_lembur',null,['class' => 'form-control timepicker']) !!}
+			{!!Form::input(null, 'jamkeluar_lembur',null,['class' => 'form-control timepicker24']) !!}
 			<span class="help-block"> </span>
 		</div>
 	</div>

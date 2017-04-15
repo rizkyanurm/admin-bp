@@ -73,7 +73,7 @@ class AmanahController extends Controller
             if ($store->save()){
               return Response::json([
                   'status' =>true,
-                  'message' =>null,
+                  'message' =>"Data Amanah Berhasil Disimpan",
                   'data'=>[
                         'request' => Request::all(),
                         'response' =>[
@@ -84,7 +84,7 @@ class AmanahController extends Controller
             }
              return Response::json([
                 'status'=>false,
-                'message' =>'Maaf! Data gagal dimasukkan',
+                'message' =>'Maaf! Data amanah gagal dimasukkan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>'false'
@@ -159,7 +159,7 @@ class AmanahController extends Controller
         }
           return Response::json([
                 'status'=>false,
-                'message' =>'Data Absensi gagal diSimpan',
+                'message' =>'Data Amanah gagal diSimpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>null,
@@ -181,7 +181,7 @@ class AmanahController extends Controller
         $amanah->delete();
         return Response::json([
           'status'=>true,
-          'message'=>'Data Absensi berhasil dihapus',
+          'message'=>'Data Amanah berhasil dihapus',
           'data'=>[
               'request'=>Request::all(),
               'response' =>Amanah::all(),

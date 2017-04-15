@@ -58,7 +58,7 @@ class JabatanController extends Controller
         if ($validator->fails()){
           return Response::json([
               'status' =>false,
-              'message' => 'Maaf Data Gagal disimpan: Data Jabatan telah tersedia',
+              'message' => 'Maaf Data jabatan Gagal disimpan: Data Jabatan telah tersedia',
               'data' =>[
                   'request'=> Request::all(),
                   'response' => $validator->errors()->all()
@@ -84,7 +84,7 @@ class JabatanController extends Controller
         
             return Response::json([
                 'status'=>true,
-                'message'=>'Maaf! Data gagal dimasukkan',
+                'message'=>'Maaf! Data jabatan gagal dimasukkan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>null,
@@ -127,7 +127,7 @@ class JabatanController extends Controller
     {
         //
          $validator = Validator::make(Request::all(),[
-          'jabatan' => 'required|unique:jabatan',
+          'jabatan' => 'required',
           'tunjangan' => 'required',
           'jum_staff' => 'required',
             
@@ -136,7 +136,7 @@ class JabatanController extends Controller
         if ($validator->fails()){
           return Response::json([
               'status' =>false,
-              'message' => 'Maaf Data Gagal disimpan: Data Jabatan Telah tersedia',
+              'message' => 'Maaf Data jabatan Gagal disimpan: Data Jabatan Telah tersedia',
               'data' =>[
                   'request'=> Request::all(),
                   'response' => $validator->errors()->all()
@@ -151,7 +151,7 @@ class JabatanController extends Controller
         if($update->save()){
           return Response::json([
               'status' =>true,
-              'message' =>'data has been updated',
+              'message' =>'data jabatan berhasil disimpan',
               'data' =>[
                 'request'=>Request::all(),
                 'response'=>Jabatan::all(),
@@ -161,7 +161,7 @@ class JabatanController extends Controller
         }
           return Response::json([
                 'status'=>true,
-                'message'=>'Maaf! Data gagal Disimpan',
+                'message'=>'Maaf! Data jabatan gagal Disimpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>null,
@@ -182,7 +182,7 @@ class JabatanController extends Controller
         $jabatan->delete();
         return Response::json([
             'status' =>true,
-            'message' =>'Jabatan has been deleted',
+            'message' =>'Data jabatan berhasil dihapus',
             'data'=>[
                   'request'=>Request::all(),
                   'response'=>Jabatan::all(),

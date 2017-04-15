@@ -49,13 +49,13 @@ class EmployeController extends Controller
     {
         $validator = Validator::make(Request::all(), [
             'nama' => 'required',
-            'email' => 'required|email|unique:employe,email',
+            'email' => 'required|email|unique:employe',
             'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required',
             'agama' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required|numeric',
-            'umur'=>'numeric',
+         
         ]);
 
         if ($validator->fails()) {
@@ -77,11 +77,11 @@ class EmployeController extends Controller
         $store->agama = Request::get('agama');
         $store->alamat = Request::get('alamat');
         $store->no_telp = Request::get('no_telp');
-        $store->umur = Request::get('umur');
+        $store->status_karyawan = Request::get('status_karyawan');
         if ($store->save()) {
             return Response::json([
                 'status'=>true,
-                'message' => 'Data Berhasil Disimpan',
+                'message' => 'Data Karyawan Berhasil Di simpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>[
@@ -141,7 +141,7 @@ class EmployeController extends Controller
 
             $validator = Validator::make(Request::all(), [
             'nama' => 'required',
-            'email' => 'required|email|unique:employe,email',
+
             'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required',
             'agama' => 'required',
@@ -169,11 +169,11 @@ class EmployeController extends Controller
         $update->agama = Request::get('agama');
         $update->alamat = Request::get('alamat');
         $update->no_telp = Request::get('no_telp');
-        $update->umur = Request::get('umur');
+        $update->status_karyawan = Request::get('status_karyawan');
         if ($update->save()) {
             return Response::json([
                 'status'=>true,
-                'message' => 'Data Karyawan Berhasil di Update!',
+                'message' => 'Data Karyawan Berhasil di Simpan!',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>Employe::all(),

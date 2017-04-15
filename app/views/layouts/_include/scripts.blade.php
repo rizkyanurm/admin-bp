@@ -26,6 +26,7 @@
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/owl/owl.carousel.min.js')}}"></script>                 
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/moment.min.js')}}"></script>
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/rangeslider/jQAllRangeSliders-min.js')}}"></script>
 
 
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>
@@ -33,6 +34,24 @@
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/validationengine/jquery.validationEngine.js')}}" ></script>
 <script type="text/javascript" src="{{URL::to('assets/js/plugins/jquery-validation/jquery.validate.js')}}" ></script>
 
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/tableexport/jspdf/libs/base64.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/tableexport/jspdf/jspdf.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/tableexport/jspdf/libs/sprintf.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/tableexport/html2canvas.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/tableexport/jquery.base64.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/tableexport/tableExport.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('assets/js/plugins/icheck/icheck.min.js')}}"></script>
 
 <!-- END THIS PAGE PLUGINS-->        
 <!-- START TEMPLATE -->

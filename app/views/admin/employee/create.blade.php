@@ -64,11 +64,9 @@
                                 minlength: 2,
                                 maxlength: 30
                         },                                                 
-                        umur: {
+                        status_karyawan: {
                                 required: true,
-                                min: 18,
-                                max: 99,
-                                digits:true
+                              
 
                         },
                         email: {

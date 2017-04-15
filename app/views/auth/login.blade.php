@@ -1,52 +1,65 @@
-<!DOCTYPE html>
-<html lang="en" class="body-full-height">
-	<head>        
-		@include('layouts._include.head')                                 
-	</head>
-	<body>
-		<div class="login-container">
-			<div class="login-box animated fadeInDown">
-				<div class="login-logo"></div>
-				<div class="login-body">
-					<div class="login-title"><strong>Log In</strong> to your account</div>
-					{!! Form::open(['url' =>'','class' =>'form-horizontal','id'=>'login_app']) !!}
-					<div class="form-group">
-						<div class="col-md-12">
-			                {!! Form::text('username', Input::old('username'), ['class' => 'form-control', 'placeholder' => 'Username']) !!}
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-12">
-			                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-6">
-							<a href="#" class="btn btn-link btn-block">Forgot your password?</a>
-						</div>
-						<div class="col-md-6">
-							{!!Form::submit('Log In',array('class'=>'btn btn-info btn-block'))!!}
-						</div>
-					</div>
-					{!!Form::close()!!}
-				</div>
-				<div class="login-footer">
-					<div class="pull-left">
-						&copy; 2015-{{date('Y')}} BIMAPROTEKSI
-					</div>
-					<div class="pull-right">
-						<a href="#">About</a> |
-						<a href="#">Privacy</a> |
-						<a href="#">Contact Us</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+@include ('layouts._include.head')
+<body class="body-full-height">
+      <div class="login-container lightmode">
+
+          <div class="login-box animated fadeInDown">
+<!--
+            <div align='center'>
+                <img src="{{URL::to('assets/img/Text_Cusbag.png')}}" alt="Cus bag"/>
+            </div>
+-->
+
+              <div class="login-body">
+              @if (count($errors) > 0)
+    <div class="alert alert-primary">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+                  <div class="login-title"><strong>Log In</strong> to your account</div>
+                  {!! Form::open(array('route'=>'login', 'class'=>'form-horizontal', 'id'=>'jvalidate', 'role'=>'form', 'novalidate'=>'novalidate')) !!}
+                      {!! csrf_field() !!}
+                  <div class="form-group">
+                      <div class="col-md-12">
+                          <input type="email" name="email" class="form-control" placeholder="E-mail"  value="{{ old('email') }}" />
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-md-12">
+                            <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-md-6">
+                          <input type="checkbox" name="remember"> Remember Me
+                      </div>
+                      <div class="col-md-6">
+                          <button class="btn btn-info btn-block" type="submit">Log In</button>
+                      </div>
+                  </div>
+
+<!--
+                  <div class="login-subtitle">
+                      Don't have an account yet? <a href="{{url('/auth/register')}}">Create an account</a>
+                  </div>
+-->
+                  </form>
+              </div>
+              <div class="login-footer">
+                  <div class="pull-left">
+                      &copy; 2016 Bimaproteksi
+                  </div>
+
+              </div>
+          </div>
+
+      </div>
+
+
+  </body>
+  @include ('layouts._include.scripts')
 </html>
-
-
-
-
-
-

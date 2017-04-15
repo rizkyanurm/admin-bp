@@ -56,7 +56,7 @@ class Amanah extends Controller
         $respose = json_decode(Route::dispatch($request)->getContent());
         $data = $respose->data->response;
         $statuss = $respose->status;
-         $messages=$respose->message;
+        $messages=$respose->message;
 //        return View::make('admin.amanah.create')->with('statuss')->with(compact('data'));
         if($statuss===false){
             return redirect()->back()->withInput()->withFlashMessage($messages);

@@ -35,7 +35,7 @@
 					
 				
 					{!! Form::model($absensi,array('route'=>array('updateabsensi',$absensi->id_absensi),'class'=>'form-horizontal', 'id'=>'jvalidate', 'role'=>'form', 'novalidate'=>'novalidate')) !!}
-					@include ('admin/absensi/_include/_form',['submit_text'=>'Update'])
+					@include ('admin/absensi/_include/_form',['submit_text'=>'Simpan'])
 					{!! Form::close() !!}
 				
 				</div>

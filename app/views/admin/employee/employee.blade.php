@@ -57,7 +57,6 @@
 											<th>Alamat</th>
 											<th>No.Telp</th>
 											<th>Agama</th>
-											<th>Umur</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -71,7 +70,7 @@
 											<td>{{$val->alamat}}</td>
 											<td>{{$val->no_telp}}</td>
 											<td>{{$val->agama}}</td>
-											<td>{{$val->umur}}</td>
+									
 
 											<td>
 
@@ -97,10 +96,12 @@
 
 											<!-- Start Button Detail Employee -->
 
+<!--
 													<div class="btn btn-primary btn-rounded btn-sm">
 														<span class="glyphicon glyphicon-file"></span>
 														{!! link_to_route('show_employee','detail',($val->id_employe))!!}
 													</div>
+-->
 											<!-- End Button Detail Employee -->
 												</td>
 											</tr>

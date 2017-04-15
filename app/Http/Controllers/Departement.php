@@ -43,22 +43,32 @@ class Departement extends Controller
   public function store(Request $request)
   {
     $input=[
-      'kode_dept_divisi'=>Input::get('kode_dept_divisi'),
+
       'nama_departement'=>Input::get('nama_departement'),
-      'nama_divisi'=>Input::get('nama_divisi'),
+//      'nama_divisi'=>Input::get('nama_divisi'),
+//      'kode_dept_divisi'=>Input::get('kode_dept_divisi'),
     ];
 
     $request = Request::create('api/departement','POST',$input);
     $respose = json_decode(Route::dispatch($request)->getContent());
     $data = $respose->data->response;
     $statuss = $respose->status;
-    // $messages=$respose->messages;
+     $messages=$respose->message;
 
     // return $data;
-      return View::make('admin.departemen.create')->with(compact('data'));
+
+   if($statuss===false){
+            return redirect()->back()->withInput()->withFlashMessage($messages);
 
 
-  }
+        }elseif($statuss===true){
+            return redirect::route('departemen')->with(compact('data'))->withFlashMessage($messages);
+      }
+        
+    }
+
+
+  
 
   /**
   * Display the specified resource.
@@ -69,6 +79,13 @@ class Departement extends Controller
   public function show($id)
   {
     //
+    $request = Request::create('api/departement','GET');
+    $respose = json_decode(Route::dispatch($request)->getContent());
+    $data = $respose->data->response;
+//    return View::make('admin.departemen.show',compact('data'));
+      
+      return $data;
+  
   }
 
   /**
@@ -93,18 +110,31 @@ class Departement extends Controller
   {
     //
     $input=[
-      'kode_dept_divisi'=>Input::get('kode_dept_divisi'),
+
       'nama_departement'=>Input::get('nama_departement'),
-      'nama_divisi'=>Input::get('nama_divisi'),
+//      'nama_divisi'=>Input::get('nama_divisi'),
+//      'kode_dept_divisi'=>Input::get('kode_dept_divisi'),
+        
     ];
 
     $request = Request::create('api/departement/'.$id, 'PUT', $input);
     $respose = json_decode(Route::dispatch($request)->getContent());
     $data = $respose->data->response;
     $messages = $respose->message;
-    return redirect::route('departemen')->with(compact('data'))->withFlashMessage($messages);
+    $statuss = $respose->status;
+      
+      
+       if($statuss===false){
+            return redirect()->back()->withInput()->withFlashMessage($messages);
 
-  }
+
+        }elseif($statuss===true){
+            return redirect::route('departemen')->with(compact('data'))->withFlashMessage($messages);
+      }
+        
+    }
+
+  
 
   /**
   * Remove the specified resource from storage.

@@ -22,14 +22,13 @@
 						<!-- end panel heading -->
                         <!-- Start Flash Message -->
 
-						@if (Session::has('flash_message'))
+				@if (Session::has('flash_message'))
 								<div class="alert alert-danger" role="alert">
                                 		<button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span>
                                 		<span class="sr-only">Close</span></button>
                                			{{ Session::get('flash_message') }}
                             	</div>
 						@endif
-
 						<!-- End Flash Message -->
 
 						<!-- panel body -->
@@ -61,39 +60,40 @@
 
 @endsection
 
+@
 @section('script')
-	<script type="text/javascript">
-            var jvalidate = $("#jvalidate").validate({
-                ignore: [],
-                rules: {
-                		 golongan: {
-                                required: true,
-                                minlength: 1,
-                                maxlength: 3
-                        },                                                 
-                        pangkat: {
-                                required: true,
-                                maxlength:20,
-                               
-                        },
-                        poin_kaizen: {
-                                required: true,
-                                digits: true,
-                                min:0,
-                                max:1000000
-                        },
-                        poin_kredit: {
-                                required: true,
-                                digits: true,
-                                min:0,
-                                max:1000000
-                        },
+<script type="text/javascript">
+        var jvalidate=$("#jvalidate").validate({
+            ignore:[],
+            rules: {
+                golongan:{
+                    required:true,
+                   
+                },
+                pangkat:{
+                    required: true,
+                    digits:false,
+                    minlength:1,
+                    maxlength:3,
+                },
+                poin_kaizen:{
+                    required:true,
+                    digits:true,
+                    minlength:3,
+                    maxlength:30000,
+                }, 
+                
+                poin_kredit:{
+                  required:true,
+                  digits:true,
+                  min:0,
+                  max:50000,
+                },
+                
+            }
+        });
 
-          
-                    }                                    
-                });                                    
+</script>
 
-        </script>
-	@endsection
-
+@endsection
 

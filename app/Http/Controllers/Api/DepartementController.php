@@ -7,8 +7,9 @@ namespace Bimaproteksi\Http\Controllers\Api;
 use Bimaproteksi\Http\Requests;
 use Bimaproteksi\Http\Controllers\Controller;
 use Bimaproteksi\Models\Departement;
+use Bimaproteksi\Models\Divisi;
 use Response;
-use Request, Validator;
+use Request, Validator, DB;
 
 class DepartementController extends Controller
 {
@@ -47,16 +48,16 @@ class DepartementController extends Controller
     public function store(Request $request)
     {
         $validator= validator::make(Request::all(),[
-        'nama_departement' =>'required',
-        'kode_dept_divisi'=>'required|unique:Departement|max:5',
-        'nama_divisi'=>'required',
+        'nama_departement' =>'required|unique:departement',
+//        'kode_dept_divisi'=>'required|unique:Departement|max:5',
+//        'nama_divisi'=>'required',
 
         ]);
 
         if ($validator->fails()){
             return Response::json([
                 'status'=> false,
-                'message' => null,
+                'message' =>'Maaf Data departemen gagal Dimasukkan :Data departemen sudah terdaftar',
                 'data' =>[
                     'request'=>Request::all(),
                     'response'=>$validator->errors()->all()
@@ -66,12 +67,12 @@ class DepartementController extends Controller
 
         $store = new Departement;
         $store->nama_departement = Request::get('nama_departement');
-        $store->kode_dept_divisi = Request::get('kode_dept_divisi');
-        $store->nama_divisi= Request::get('nama_divisi');
+//        $store->kode_dept_divisi = Request::get('kode_dept_divisi');
+//        $store->nama_divisi= Request::get('nama_divisi');
         if($store->save()) {
             return Response::json([
                 'status'=>true,
-                'message'=>null,
+                'message'=>'Selamat! Data departemen berhasil disimpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>[
@@ -80,6 +81,14 @@ class DepartementController extends Controller
                     ]
                 ]);
             }
+         return Response::json([
+            'status'=>false,
+            'message' =>'Maaf! Data departemen Gagal dimasukkan',
+            'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>'false'
+            ]
+        ]);
         }
 
     /**
@@ -90,15 +99,22 @@ class DepartementController extends Controller
      */
     public function show($id)
     {
-        $departemen=Departement::where('id_departement',$id)->get()->first();
+        
+          
+        $divisi=  $divisi=DB::table('Divisi')
+                ->join('Departement','Divisi.id_departement','=','Departement.id_departement')->get();
+        
         return Response::json([
-                    'status'=>true,
-                    'data'=>[
-                        'request'=>Request::all(),
-                        'response'=>$departemen
-                    ]
-                ]);
-            }
+             'status'=> true,
+                'message' =>'Data departemen berhasil ditampilkan',
+                'data' =>[
+                    'request'=>Request::all(),
+                    'response'=>$divisi
+                ]
+            
+        ]);
+    
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -121,21 +137,45 @@ class DepartementController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator= validator::make(Request::all(),[
+        'nama_departement' =>'required|unique:departement',
+
+        ]);
+        
+           if ($validator->fails()){
+            return Response::json([
+                'status'=> false,
+                'message' =>'Maaf Data gagal Dimasukkan :Data departemen sudah terdaftar',
+                'data' =>[
+                    'request'=>Request::all(),
+                    'response'=>$validator->errors()->all()
+                ]
+            ]);
+        }
+
         $update=Departement::find($id);
-        $update->kode_dept_divisi = Request::get('kode_dept_divisi');
         $update->nama_departement = Request::get('nama_departement');
-        $update->nama_divisi = Request::get('nama_divisi');
+        //        $update->nama_divisi = Request::get('nama_divisi');
+        //        $update->kode_dept_divisi = Request::get('kode_dept_divisi');
 
         if($update->save()) {
           return Response::json([
             'status' => true,
-            'message' =>'data has been updated',
+            'message' =>'Data departemen berhasil disimpan',
             'data'=>[
               'request' => Request::all(),
               'response' =>Departement::all(),
               ]
             ]);
         }
+         return Response::json([
+            'status'=>false,
+            'message' =>'Maaf! Data departemen Gagal dimasukkan',
+            'data'=>[
+                    'request'=>Request::all(),
+                    'response'=>'false'
+            ]
+        ]);
 
     }
 
@@ -147,16 +187,28 @@ class DepartementController extends Controller
      */
     public function destroy($id)
     {
-        $departemen= Departement::find($id);
-        $departemen->delete();
-        return Response::json([
+        //
+        $departemen=Departement::find($id);
+       try{
+            $departemen->delete();
+            return Response::json([
+            'status'=>true,
+            'message' => 'Data Departement berhasil dihapus',
+            'data'=>[
+              'request'=>Request::all(),
+              'response'=>Departement::all(),
+              ]
+          ]);
+        } catch(\Exception $e){
+            return Response::json([
                 'status'=>true,
-                'message'=>'Departement has been deleted',
-                'data'=>[
-                        'request'=>Request::all(),
-                        'response'=>Departement::all()
-
+                'message' =>'Data Departement gagal dihapus : Terdapat Konstrain pada tabel Departemen dan Divisi',
+                'data' =>[
+                    'request'=>Request::all(),
+                    'response'=>Departement::all(),
                 ]
             ]);
+       }
+     
     }
 }

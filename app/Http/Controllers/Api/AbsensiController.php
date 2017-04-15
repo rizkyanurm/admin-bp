@@ -97,7 +97,7 @@ class AbsensiController extends Controller
         if ($store->save()) {
             return Response::json([
                 'status'=>true,
-                'message' =>'Data berhasil Disimpan',
+                'message' =>'Data Absensi berhasil Disimpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>[
@@ -110,7 +110,7 @@ class AbsensiController extends Controller
         }
         return Response::json([
                 'status'=>false,
-                'message' =>'Maaf! Data gagal dimasukkan : id tidak terdaftar',
+                'message' =>'Maaf! Data Absensi gagal dimasukkan : id tidak terdaftar',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>'false'
@@ -190,7 +190,7 @@ class AbsensiController extends Controller
         if ($update->save()) {
             return Response::json([
                 'status'=>true,
-                'message' => 'data berhasil updated',
+                'message' => 'Data Absensi berhasil disimpan',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>Absensi::all(),
@@ -200,7 +200,7 @@ class AbsensiController extends Controller
     }
           return Response::json([
                 'status'=>false,
-                'message' =>'Data gagal di update: id tidak terdaftar',
+                'message' =>'Data Absensi  gagal di update: id tidak terdaftar',
                 'data'=>[
                     'request'=>Request::all(),
                     'response'=>null,

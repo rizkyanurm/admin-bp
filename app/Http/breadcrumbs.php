@@ -55,6 +55,20 @@
 		$breadcrumbs->push('Edit Karyawan', route('editemployee'));
 	});
 
+	//Home > dt Employee 
+	Breadcrumbs::register('dt_employe', function($breadcrumbs){
+		$breadcrumbs->parent('employee');
+		$breadcrumbs->push('Log Karyawan', route('dt_employe'));
+	});
+
+//Home > dt Employee 
+	Breadcrumbs::register('add_dt_employe', function($breadcrumbs){
+		$breadcrumbs->parent('dt_employe');
+		$breadcrumbs->push('Tambah Log Karyawan', route('add_dtemploye'));
+	});
+
+
+
 	//Home > Employee > Detail
 	Breadcrumbs::register('detailemployee', function($breadcrumbs){
 		$breadcrumbs->parent('employee');
@@ -135,16 +149,16 @@
 //////////////////////////////////////////////////////////////////////
 	Breadcrumbs::register('poinpimpin', function($breadcrumbs){
 		$breadcrumbs->parent('admin');
-		$breadcrumbs->push('Poin Kepemimpinan', route('kepemimpinan'));
+		$breadcrumbs->push('Poin Kepemimpinan', route('ppimpin'));
 
 	});
 	Breadcrumbs::register('addpoinpimpin', function($breadcrumbs){
 		$breadcrumbs->parent('poinpimpin');
-		$breadcrumbs->push('Tambah Poin Pimpin', route('addpoinpimpin'));
+		$breadcrumbs->push('Tambah Poin Pimpin', route('add_ppimpin'));
 	});
 	Breadcrumbs::register('editpoinpimpin', function($breadcrumbs){
 		$breadcrumbs->parent('poinpimpin');
-		$breadcrumbs->push('Edit Poin Pimpin', route('editpoinpimpin'));
+		$breadcrumbs->push('Edit Poin Pimpin', route('edit_ppimpin'));
 
 	});
 	Breadcrumbs::register('detailpoinpimpin',function($breadcrumbs){
@@ -157,14 +171,19 @@
 	});
 	Breadcrumbs::register('dtppimpin', function($breadcrumbs){
 		$breadcrumbs->parent('poinpimpin');
-		$breadcrumbs->push('Data Poin Pimpin', route('dtpoinpimpin'));
+		$breadcrumbs->push('Data Poin Pimpin', route('dt_pimpin'));
+	});
+
+	Breadcrumbs::register('add_dtpimpin', function($breadcrumbs){
+		$breadcrumbs->parent('dtppimpin');
+		$breadcrumbs->push('Tambah Data Pimpin', route('add_dtpimpin'));
 	});
 	
 //////////////////////////////////////////////////////////////////////
 
 Breadcrumbs::register('poinkinerja', function($breadcrumbs){
 		$breadcrumbs->parent('admin');
-		$breadcrumbs->push('Poin Kinerja', route('poinkinerja'));
+		$breadcrumbs->push('Poin Kinerja', route('pkinerja'));
 	});
 
 	Breadcrumbs::register('budaya', function($breadcrumbs){
@@ -174,11 +193,11 @@ Breadcrumbs::register('poinkinerja', function($breadcrumbs){
 
 	Breadcrumbs::register('addbudaya', function($breadcrumbs){
 		$breadcrumbs->parent('budaya');
-		$breadcrumbs->push('Tambah Budaya', route('addbudaya'));
+		$breadcrumbs->push('Tambah Budaya', route('add_budaya'));
 	});
-	Breadcrumbs::register('editbudaya', function($breadcrumbs){
+	Breadcrumbs::register('edit_budaya', function($breadcrumbs){
 		$breadcrumbs->parent('budaya');
-		$breadcrumbs->push('Edit Budaya', route('editbudaya'));
+		$breadcrumbs->push('Edit Budaya', route('edit_budaya'));
 	});
 
 Breadcrumbs::register('aspek', function($breadcrumbs){
@@ -199,12 +218,12 @@ Breadcrumbs::register('poin', function($breadcrumbs){
 		$breadcrumbs->push('Poin', route('poin'));
 	});
 	Breadcrumbs::register('addpoin', function($breadcrumbs){
-		$breadcrumbs->parent('poin');
-		$breadcrumbs->push('tambah Poin', route('addpoin'));
+		$breadcrumbs->parent('poinkinerja');
+		$breadcrumbs->push('tambah Poin', route('add_pkinerja'));
 	});
 	Breadcrumbs::register('editpoin', function($breadcrumbs){
-		$breadcrumbs->parent('poin');
-		$breadcrumbs->push('Edit poin', route('editpoin'));
+		$breadcrumbs->parent('poinkinerja');
+		$breadcrumbs->push('Edit poin', route('edit_pkinerja'));
 	});
 
 Breadcrumbs::register('bobot', function($breadcrumbs){
@@ -229,17 +248,25 @@ Breadcrumbs::register('kaizen', function($breadcrumbs){
 
 	Breadcrumbs::register('editkaizen', function($breadcrumbs){
 		$breadcrumbs->parent('kaizen');
-		$breadcrumbs->push('Edit kaizen', route('editkaizen'));
+		$breadcrumbs->push('Edit kaizen', route('edit_pkaizen'));
 	});
+
 
 	Breadcrumbs::register('dtpkaizen', function($breadcrumbs){
 		$breadcrumbs->parent('kaizen');
-		$breadcrumbs->push('Data Poin Kaizen', route('dtpkaizen'));
+		$breadcrumbs->push('Data Poin Kaizen', route('dt_kaizen'));
 	});
-Breadcrumbs::register('kpi', function($breadcrumbs){
+
+  Breadcrumbs::register('add_dtkaizen', function($breadcrumbs){
+      $breadcrumbs->parent('dtpkaizen');
+      $breadcrumbs->push('Data Kaizen', route('add_dtkaizen'));
+  });
+
+//////////////////////////KPI////////////////////////////////////
+    Breadcrumbs::register('kpi', function($breadcrumbs){
 		$breadcrumbs->parent('admin');
-		$breadcrumbs->push('KPI', route('kpi_project'));
-});
+		$breadcrumbs->push('KPI', route('kpi'));
+    });
 	breadcrumbs::register('addkpi', function($breadcrumbs){
 		$breadcrumbs->parent('kpi');
 		$breadcrumbs->push('Tambah KPI', route('addkpi'));
@@ -249,11 +276,60 @@ Breadcrumbs::register('kpi', function($breadcrumbs){
 		$breadcrumbs->push('editkpi', route('editkpi'));
 	});
 
-//////////////////////////////////////////////////////////
+//////////////////////////dtKPI////////////////////////////////
+
+    Breadcrumbs::register('dtkpi', function($breadcrumbs){
+		$breadcrumbs->parent('kpi');
+		$breadcrumbs->push('dtkpi', route('dtkpi'));
+    });
+	breadcrumbs::register('add_dtkpi', function($breadcrumbs){
+		$breadcrumbs->parent('dtkpi');
+		$breadcrumbs->push('Tambah Data KPI', route('add_dtkpi'));
+	});
+	breadcrumbs::register('edit_dtkpi', function($breadcrumbs){
+		$breadcrumbs->parent('dtkpi');
+		$breadcrumbs->push('edit_dtkpi', route('edit_dtkpi'));
+	});
+
+///////////////////////JamKerja//////////////////////////////
+
 Breadcrumbs::register('jamkerja', function($breadcrumbs){
 		$breadcrumbs->parent('employee');
 		$breadcrumbs->push('Jam Kerja', route('jamkerja'));
 	});
+
+
+Breadcrumbs::register('addjamkerja', function($breadcrumbs){
+        $breadcrumbs->parent('jamkerja');
+        $breadcrumbs->push('Tambah Jam Kerja', route('addjamkerja'));
+});
+
+
+Breadcrumbs::register('editjamkerja',function($breadcrumbs){
+        $breadcrumbs->parent('jamkerja');
+        $breadcrumbs->push('Edit Jam Kerja', route('editjamkerja'));
+});
+//////////////////////////DT_JAMKERJA///////////////////////////////
+
+
+Breadcrumbs::register('dt_jamkerja', function($breadcrumbs){
+		$breadcrumbs->parent('employee');
+		$breadcrumbs->push('Data Jam Kerja', route('dt_jkerja'));
+	});
+
+
+Breadcrumbs::register('add_dtjamkerja', function($breadcrumbs){
+        $breadcrumbs->parent('dt_jamkerja');
+        $breadcrumbs->push('Tambah Data Jam Kerja', route('add_dtjkerja'));
+});
+
+
+Breadcrumbs::register('edit_dtjkerja',function($breadcrumbs){
+        $breadcrumbs->parent('dt_jamkerja');
+        $breadcrumbs->push('Edit Jam Kerja', route('edit_dtjkerja'));
+});
+/////////////////////////////////////////////////////////
+
 
 Breadcrumbs::register('absensi', function($breadcrumbs){
 		$breadcrumbs->parent('admin');
@@ -268,6 +344,8 @@ Breadcrumbs::register('absensi', function($breadcrumbs){
 		$breadcrumbs->parent('absensi');
 		$breadcrumbs->push('Edit Absensi', route('editabsensi'));
 	});
+
+
 //////////////////////////////////////////////////////////
 breadcrumbs::register('amanah', function($breadcrumbs){
 		$breadcrumbs->parent('admin');

@@ -35,7 +35,7 @@
 			<thead>
 				<tr>
 					<th>Nama Amanah</th>
-					<th>Tunjangan Rupiah</th>
+					<th>Tunjangan (Rp)</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -69,3 +69,4 @@
 </div>
 
 @endsection
+@stop

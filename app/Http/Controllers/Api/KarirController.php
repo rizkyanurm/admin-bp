@@ -117,6 +117,7 @@ class KarirController extends Controller
     {
         //
         $karir=Karir::find($id);
+//        return $karir;
         return view('admin.karir.edit')->with(compact('karir'));
     }
 
@@ -138,7 +139,7 @@ class KarirController extends Controller
         if ($update->save()){
             return Response::json([
                 'status' => true,
-                'message' =>'data has been updated',
+                'message' =>'Data baru berhasil disimpan',
                 'data'=>[
                       'request' =>Request::all(),
                       'response'=>Karir::all(),
@@ -166,7 +167,7 @@ class KarirController extends Controller
     public function destroy($id)
     {
         //
-        $karir = Karir::find($id);
+        $karir=Karir::find($id);
         $karir->delete();
         return Response::json([
             'status'=>true,

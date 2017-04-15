@@ -6,7 +6,7 @@ use Bimaproteksi\User;
 use Validator;
 use Bimaproteksi\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers, Request;
 
 class AuthController extends Controller
 {
@@ -22,6 +22,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    private $redirectTo ='/homeadmin';
 
     /**
      * Create a new authentication controller instance.
@@ -59,7 +60,7 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'username' => $data['username'],
+           
             'password' => bcrypt($data['password']),
         ]);
     }
